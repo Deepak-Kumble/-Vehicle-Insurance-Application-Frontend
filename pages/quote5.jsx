@@ -12,6 +12,7 @@ import {
   Group,
 } from "@mantine/core";
 import { Progress } from "@mantine/core";
+import { API_URL } from "../constants";
 import { useForm } from "@mantine/form";
 import { useLocalStorage } from "@mantine/hooks";
 import Router, { useRouter } from "next/router";
@@ -45,7 +46,30 @@ export default function Page() {
       <Center my={50}>
         <Paper w={"50%"} shadow="lg" radius="xs" p="lg">
          
-          <form id="payment-form" class="form" method="post" action="/payment" object="${paymentRequest}">
+        <form
+            onSubmit={form.onSubmit((v) => {
+              let data = new FormData();
+              for (const prop in v) {
+                data.append(prop, v[prop]);
+              }
+
+              fetch(API_URL + "payment", {
+                method: "POST",
+                body: data,
+              })
+                .then((response) => {
+                  if (response.ok) {
+                    alert("Payment Successful!");
+                    Router.push("/");
+                  } else {
+                    alert("An error occurred while saving driving details.");
+                  }
+                })
+                .catch((error) => {
+                  alert("An error occurred while saving driving details.");
+                  console.error(error);
+                });
+            })}>
             <Stack spacing={"md"}>
               <Banner />
               {/* <Select
