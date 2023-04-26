@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title class="title">Auto Armor | Get Quote (Step 6)</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="logo"><img src="images/logo1.png">AUTO ARMOR</a>
+      <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="quote.html">Get Quote</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="account.html">Account</a></li>
+      </ul>
+    </nav>
+    <header>
+        <div class="bg-image"></div>
+        <div class="header-content">
+          <h1>Get an Instant Quote for Your Vehicle Insurance</h1>
+          <p><b>Choose the best insurance policy for your vehicle. We offer fast and easy quotes, competitive pricing, and flexible coverage options.</b></p>
+        </div>
+     </header>
+      <div class="container">
+        <h2 class="form-heading">Payment</h2>
+        <form id="payment-form" class="form" method="post" action="/payment" th:object="${paymentRequest}">
+          <div class="form-group">
+            <label for="payment-option">Payment Option</label>
+            <select id="payment-option" name="payoption" class="form-control">
+              <option value="">Select Payment Option</option>
+              <option value="card">Debit/Credit Card</option>
+              <option value="upi">UPI</option>
+              <option value="netbanking">Net Banking</option>
+            </select>
+          </div>
+          <div id="card-details" class="form-group hidden">
+            <label for="card-number">Card Number</label>
+            <input type="text" id="card-number" name="cardno" class="form-control" placeholder="Enter Card Number">
+            <label for="cvv">CVV</label>
+            <input type="password" id="cvv" name="cvv" class="form-control" placeholder="Enter CVV">
+          </div>
+          <div id="upi-details" class="form-group hidden">
+            <label for="upi-id">UPI ID</label>
+            <input type="text" id="upi-id" name="upi" class="form-control" placeholder="Enter UPI ID">
+          </div>
+          <div id="netbanking-details" class="form-group hidden">
+            <label for="bank-name">Bank Name</label>
+            <select id="bank-name" name="bankname" class="form-control">
+              <option value="">Select Bank</option>
+              <option value="hsbc">HSBC</option>
+              <option value="barclays">Barclays</option>
+              <option value="lloyds-banking-group">Lloyds Banking Group</option>
+              <option value="natwest-group">Natwest Group</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount to Pay (Pounds)</label>
+            <input type="number" id="amount" name="amount" class="form-control" placeholder="Enter Amount">
+          </div><div id="quote"></div>
+          <button type="submit" class="quote-button">Pay</button>
+        </form>
+      </div>
+      <a href="quote3.html"><button type="button" class="back-button"> <i class="fa fa-arrow-left"></i> Back</button></a>
+      
+      
+  
+   
+    <footer>
+    <p>&copy; 2023 Auto Armor. All rights reserved.</p>
+    </footer>
+
+
+<script>
+const paymentOption = document.getElementById('payment-option');
+const cardDetails = document.getElementById('card-details');
+const upiDetails = document.getElementById('upi-details');
+const netbankingDetails = document.getElementById('netbanking-details');
+
+paymentOption.addEventListener('change', function() {
+  if (paymentOption.value === 'card') {
+    cardDetails.classList.remove('hidden');
+    upiDetails.classList.add('hidden');
+    netbankingDetails.classList.add('hidden');
+  } else if (paymentOption.value === 'upi') {
+    upiDetails.classList.remove('hidden');
+    cardDetails.classList.add('hidden');
+    netbankingDetails.classList.add('hidden');
+  } else if (paymentOption.value=== 'netbanking') {
+netbankingDetails.classList.remove('hidden');
+cardDetails.classList.add('hidden');
+upiDetails.classList.add('hidden');
+} else {
+cardDetails.classList.add('hidden');
+upiDetails.classList.add('hidden');
+netbankingDetails.classList.add('hidden');
+}
+});
+
+
+const quote = localStorage.getItem('quote');
+document.getElementById('quote').textContent = quote;
+	
+/*
+const form = document.querySelector('form');
+const amountInput = document.querySelector('#amount');
+form.addEventListener('submit', function(event) {
+event.preventDefault();
+const selectedOption = paymentOption.value;
+const amount = amountInput.value;
+if (selectedOption === 'card') {
+const cardNumberInput = document.querySelector('#card-number');
+const cvvInput = document.querySelector('#cvv');
+const cardNumber = cardNumberInput.value.trim();
+const cvv = cvvInput.value.trim();
+
+if (!cardNumber || cardNumber.length !== 16) {
+  alert('Please enter a valid 16-digit card number.');
+  return;
+}
+
+if (!cvv || cvv.length !== 3) {
+  alert('Please enter a valid 3-digit CVV.');
+  return;
+}
+
+alert(`Payment of ${amount} using card ${cardNumber} has been successful.`);
+} else if (selectedOption === 'upi') {
+const upiIdInput = document.querySelector('#upi-id');
+const upiId = upiIdInput.value.trim();
+
+if (!upiId) {
+  alert('Please enter a valid UPI ID.');
+  return;
+}
+alert(`Payment of ${amount} using UPI ID ${upiId} has been successful.`);
+}
+});
+
+payBtn.addEventListener('click', function() {
+  const amount = document.getElementById('amount').value;
+  
+  if (paymentOption.value === 'card') {
+    const cardNumber = document.getElementById('card-number').value;
+    const cvv = document.getElementById('cvv').value;
+    // process payment for card
+    alert(`Payment of ${amount} pounds using debit/credit card with card number ${cardNumber} has been successful.`);
+  } else if (paymentOption.value === 'upi') {
+    const upiId = document.getElementById('upi-id').value;
+    // process payment for UPI
+    alert(`Payment of ${amount} pounds using UPI with ID ${upiId} has been successful.`);
+  } else if (paymentOption.value === 'netbanking') {
+    const bankName = document.getElementById('bank-name').value;
+    // process payment for net banking
+    alert(`Payment of ${amount} pounds using net banking with ${bankName} bank has been successful.`);
+  }
+});
+*/
+</script>
+
+<style>
+
+.form-heading {
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.back-button {
+       background-color: #4CAF50;
+       color: #fff;
+       border: none;
+       padding: 10px 20px;
+       border-radius: 5px;
+       font-size: 16px;
+       cursor: pointer;
+       transition: background-color 0.3s ease;
+       margin: 10px;
+     }
+
+.back-button:hover {
+background-color: #083a09;
+}
+</style>
+</body>
+</html>
+  
+      
