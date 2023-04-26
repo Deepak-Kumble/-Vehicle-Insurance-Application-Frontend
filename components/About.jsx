@@ -30,8 +30,7 @@ const mockdata = [
   { title: 'Personalized Insurance Quote', icon: IconCarCrash, color: 'violet' },
   { title: 'Compare Quotes', icon: IconCoin, color: 'teal' },
   { title: 'Cutomer Support', icon: IconHelp, color: 'green' },
-  { title: 'Login', icon: IconLogin, color: 'indigo' },
-  { title: 'Register', icon: IconRegistered, color: 'blue' },
+
   { title: 'Payment', icon: IconCreditCard, color: 'cyan' },
  
 ];
@@ -78,13 +77,13 @@ export function About() {
 
   return (
     <Card withBorder radius="md" className={classes.card}>
-      <Group position="apart">
+      <Group position="center">
           <Center>
         <Text align="center"  className={classes.title}>SERVICES</Text>
         </Center>
      
       </Group>
-      <SimpleGrid cols={3} mt="md">
+      <SimpleGrid cols={4} mt="md">
         {items}
       </SimpleGrid>
     </Card>

@@ -1,4 +1,4 @@
-import { Button, Center, Navbar, NumberInput, Paper, Textarea, TextInput, Title } from "@mantine/core";
+import { Button, Stack, Center, Navbar, NumberInput, Paper, Textarea, TextInput, Title } from "@mantine/core";
 import { useLocalStorage } from "@mantine/hooks";
 import Router from "next/router";
 import { Progress } from "@mantine/core";
@@ -11,6 +11,7 @@ import { Policy1 } from "../components/Policy1";
 import { Policy2 } from "../components/Policy2";
 import { Policy3 } from "../components/Policy3";
 import { NavAccount } from "../components/NavAccount";
+import { QuoteHeader } from "../components/QuoteHeader";
 
 export default function Page() {
   let [quote, setQuote] = useLocalStorage({
@@ -27,11 +28,11 @@ export default function Page() {
     <>
        <NavAccount />
 
-      <Center>
+       <Center my={"md"}>
         <Paper w={"60%"} shadow="lg" radius="xs" p="lg">
-          <Title order={2} align="center">
-            LIST OF POLICIES
-          </Title>
+        <Stack spacing={"xs"}>
+        <QuoteHeader name="LIST OF POLICIES" step={5} />
+      
           <br />
           <Policy1 quote={quote} BtnClick={BtnClick} />
           <br />
@@ -40,7 +41,9 @@ export default function Page() {
           <br />
 
           <Policy3 quote={quote} BtnClick={BtnClick} />
+          </Stack>
         </Paper>
+        
       </Center>
 
       <FooterLinks />

@@ -1,4 +1,4 @@
-import { Button } from "@mantine/core";
+import { Button, TextInput } from "@mantine/core";
 import { createStyles, Paper, Text, ThemeIcon, rem } from "@mantine/core";
 import { Icon360, IconBrandSuperhuman, IconColorSwatch, IconMan } from "@tabler/icons-react";
 import React from "react";
@@ -43,12 +43,6 @@ export function Policy3({ quote, BtnClick }) {
       <Text size="sm" mt="sm" color="dimmed">
         <p>
         Policy C is our comprehensive coverage option that provides the highest level of protection for your vehicle. With Policy C, you not only get all the coverage and add-ons offered in Policy A and Policy B, but you also have access to an extensive range of additional coverage options tailored to meet your specific needs. In addition to the standard coverage options provided in Policy A and Policy B, Policy C includes:
-
-
-
-
-
-
         </p>
         <ul>
           <li>Uninsured/underinsured motorist coverage</li>
@@ -63,9 +57,8 @@ export function Policy3({ quote, BtnClick }) {
         
         <br />
         <p>
-        <b>
-        <h2>Generated Quote amount: &pound; {parseFloat(quote)+200}</h2>
-
+        <b>  
+        Generated Quote amount: &pound; {parseFloat(quote)+200}
         </b>
         </p>
         <div id="quote"></div>

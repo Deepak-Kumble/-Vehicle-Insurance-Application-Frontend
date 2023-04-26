@@ -56,10 +56,13 @@ export function Policy1({ quote, BtnClick }) {
           <li>Increased liability limits</li>
         </ul>
         <br />
+    
         <p>
-          <b>
-          <h2>Generated Quote amount: &pound; {parseFloat(quote)}</h2>
-          </b>
+        <b>  
+     
+        Generated Quote amount: &pound; {parseFloat(quote)}
+
+        </b>
         </p>
         <Button radius="xl" onClick={() => BtnClick(parseFloat(quote))}>
           Buy Now

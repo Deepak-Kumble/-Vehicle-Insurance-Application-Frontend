@@ -116,7 +116,7 @@ export function FooterLinks({ data }) {
             <Text size="md" color="dimmed" className={classes.description}  colorsize="sm" spacing="20">
             <Group position="apart" sx={{ height: "100%" }}>
             <Group sx={{ height: "100%" }} spacing={0} className={classes.hiddenMobile}>
-            <Link href="/index" className={classes.link}>
+            <Link href="/" className={classes.link}>
             Home
             </Link>
             </Group>
