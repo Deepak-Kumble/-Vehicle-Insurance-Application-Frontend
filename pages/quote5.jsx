@@ -21,6 +21,7 @@ import { NavBar } from "../components/NavBar";
 import { FooterLinks } from "../components/FooterLinks";
 import { Banner} from "../components/Banner";
 import { NavAccount } from "../components/NavAccount";
+import { QuoteHeader } from "../components/QuoteHeader";
 export default function Page() {
   const [quote] = useLocalStorage({
     key: "quote_select_value",
@@ -29,11 +30,10 @@ export default function Page() {
 
   const form = useForm({
     initialValues: {
-      payoption: "",
       cardno: 0,
       cvv: "",
-      upi: "",
       bankname: "",
+      amount: 0,
     },
   });
 
@@ -71,20 +71,8 @@ export default function Page() {
                 });
             })}>
             <Stack spacing={"md"}>
-              <Banner />
-              {/* <Select
-                label="Payment Option"
-                id="payment-option"
-                name="payoption"
-                data={["Debit/Credit Card", "UPI", "Net Banking"]}
-              /> */}
-              <Text align="center">
-                <Title order={2}>PAYMENT</Title>
-                Step 6 of 6
-              </Text>
-              <Progress radius="lg" size="lg" value={100} />
-
-              <Grid>
+            <QuoteHeader name="PAYMENT" step={6} />
+            <Grid>
                 <Grid.Col span={9}>
                   <NumberInput
                     label="Card Number:"
@@ -92,13 +80,14 @@ export default function Page() {
                     name="cardno"
                     class="form-control"
                     placeholder="Enter Card Number"
+                    {...form.getInputProps("cardno")}
                   />
                 </Grid.Col>
                 <Grid.Col span={3}>
-                  <NumberInput type="password" label="CVV:" placeholder="Enter CVV" />
+                  <NumberInput type="password" label="CVV:" placeholder="Enter CVV" 
+                  {...form.getInputProps("")}/>
                 </Grid.Col>
-              </Grid>
-
+                </Grid>
               {false && (
                 <TextInput
                   label="UPI ID"
@@ -114,6 +103,7 @@ export default function Page() {
                 id="bank-name"
                 name="bankname"
                 data={["HSBC", "Barclays", "Lloyds Banking Group", "Natwest Group"]}
+                {...form.getInputProps("bankname")}
               />
 
               <NumberInput label="Amount:" value={parseInt(quote)} disabled />

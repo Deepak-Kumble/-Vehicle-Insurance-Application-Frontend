@@ -78,7 +78,7 @@ export default function Page() {
                 required
                 {...form.getInputProps("lastName")}
               />
-                <Radio.Group {...form.getInputProps("gender")} label="Gender:">
+                <Radio.Group {...form.getInputProps("gender")} label="Gender:" required>
                 <Group>
                   <Radio label="Male" value="Male" />
                   <Radio label="Female" value="Female" />

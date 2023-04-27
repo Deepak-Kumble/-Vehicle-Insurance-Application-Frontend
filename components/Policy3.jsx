@@ -61,8 +61,7 @@ export function Policy3({ quote, BtnClick }) {
         Generated Quote amount: &pound; {parseFloat(quote)+200}
         </b>
         </p>
-        <div id="quote"></div>
-        
+     
         <Button radius="xl" onClick={() => BtnClick(parseFloat(quote) + 200)}>
           Buy Now
         </Button>

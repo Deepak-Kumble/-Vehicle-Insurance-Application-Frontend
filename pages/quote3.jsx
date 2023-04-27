@@ -11,6 +11,7 @@ import {
   TextInput,
   Title,
 } from "@mantine/core";
+import Link from "next/link";
 import { Radio } from "@mantine/core";
 import { NavBar } from "../components/NavBar";
 import { Progress } from "@mantine/core";
@@ -78,7 +79,7 @@ export default function Page() {
             <Stack spacing={"xs"}>
               <QuoteHeader name="INSURANCE DETAILS" step={4} />
 
-              <Radio.Group {...form.getInputProps("renewal_type")} label="Insurance Renewal Type:">
+              <Radio.Group {...form.getInputProps("renewal_type")} label="Insurance Renewal Type:" required>
                 <Group>
                   <Radio label="Upgrade" value="Upgrade" />
                   <Radio label="Existing" value="Existing" />
@@ -101,9 +102,11 @@ export default function Page() {
                 </label>
               </div>
               <Group position="right">
+              <Link href="/quote2" style={{textDecoration:'none'}}>
                 <Button variant={"subtle"} radius="xs">
                   Back
                 </Button>
+                </Link>
                 <Button type="submit" radius="xs">
                 Save & Next
                 </Button>

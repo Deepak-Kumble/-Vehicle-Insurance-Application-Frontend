@@ -11,6 +11,7 @@ import {
   Group,
   Title,
 } from "@mantine/core";
+import Link from "next/link";
 import { DateInput } from "@mantine/dates";
 import { Progress } from "@mantine/core";
 import { useForm } from "@mantine/form";
@@ -71,6 +72,7 @@ export default function Page() {
 
               <Select
                 label="Type of Driving License:"
+                required
                 placeholder="Select Type of Driving License:"
                 id="todl"
                 name="todl"
@@ -78,13 +80,14 @@ export default function Page() {
                 {...form.getInputProps("todl")}
               />
             
-                <NumberInput label="Driving Experience (years):" id="drive" name="drive" min="0" {...form.getInputProps("drive")} />
+                <NumberInput label="Driving Experience (years):" id="drive" name="drive" min="0" {...form.getInputProps("drive")} required/>
 
-                <NumberInput label="Number of Traffic Convictions:" id="trafs" name="trafs" min="0" {...form.getInputProps("trafs")} />
+                <NumberInput label="Number of Traffic Convictions:" id="trafs" name="trafs" min="0" {...form.getInputProps("trafs")} required/>
 
         
                 <NumberInput
                   label="Number of Insurance Claims in Past Year:"
+                  required
                   id="claims"
                   name="claims"
                   min="0"
@@ -92,11 +95,13 @@ export default function Page() {
                 />
  
               <Group position="right">
+              <Link href="/quote1" style={{textDecoration:'none'}}>
                 <Button variant={"subtle"} radius="xs">
                   Back
                 </Button>
+                </Link>
                 <Button type="submit" radius="xs">
-                  Save
+                  Save & Next
                 </Button>
               </Group>
             </Stack>

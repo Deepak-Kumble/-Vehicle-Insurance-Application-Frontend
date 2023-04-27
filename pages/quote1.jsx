@@ -11,6 +11,7 @@ import {
   TextInput,
   Title,
 } from "@mantine/core";
+import Link from "next/link";
 import { Progress } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
 import { useForm } from "@mantine/form";
@@ -72,6 +73,7 @@ export default function Page() {
 
               <TextInput
                 label="Registration Number:"
+                required
                 id="regis"
                 name="regis"
                 {...form.getInputProps("regis")}
@@ -80,6 +82,7 @@ export default function Page() {
               <div class="form-group">
                 <Select
                   label="Year of Registration:"
+                  required
                   id="yor"
                   name="yor"
                   data={[
@@ -115,6 +118,7 @@ export default function Page() {
   
                 <Select
                   label="Vehicle Maker:"
+                  required
                   id="make"
                   name="make"
                   data={Object.keys(CAR_MODELS)}
@@ -123,6 +127,7 @@ export default function Page() {
       
               <Select
                 label="Vehicle Model:"
+                required
                 id="model"
                 name="model"
                 data={CAR_MODELS[form.values.make] || ["NONE"]}
@@ -131,6 +136,7 @@ export default function Page() {
 
               <Select
                 id="fuel"
+                required
                 label="Fuel Type:"
                 name="fuel"
                 data={["Petrol", "Diesel"]}
@@ -139,6 +145,7 @@ export default function Page() {
 
               <Select
                 label="Gearbox Type:"
+                required
                 id="gearbox"
                 name="gearbox"
                 data={["Automatic", "Manual"]}
@@ -146,9 +153,11 @@ export default function Page() {
               />
 
               <Group position="right">
+               Router.back("/quote");
                 <Button variant={"subtle"} radius="xs">
                   Back
                 </Button>
+               
                 <Button type="submit" radius="xs">
                   Save & Next
                 </Button>
