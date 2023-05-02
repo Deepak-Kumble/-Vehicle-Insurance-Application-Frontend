@@ -66,7 +66,7 @@ export function Login() {
         <TextInput label="Username" placeholder="Your Username" size="md" />
         <PasswordInput label="Password" placeholder="Your Password" mt="md" size="md" />
         
-        <Link href="/" className={classes.link} style={{textDecoration:'none',color:'white'}}>
+        <Link href="/quote1" className={classes.link} style={{textDecoration:'none',color:'white'}}>
         <Button fullWidth mt="xl" size="md" >
         
           Login

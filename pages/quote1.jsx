@@ -153,11 +153,11 @@ export default function Page() {
               />
 
               <Group position="right">
-               Router.back("/quote");
+              <Link href="/quote" style={{textDecoration:'none'}}>
                 <Button variant={"subtle"} radius="xs">
                   Back
                 </Button>
-               
+               </Link>
                 <Button type="submit" radius="xs">
                   Save & Next
                 </Button>

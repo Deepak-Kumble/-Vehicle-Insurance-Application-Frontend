@@ -33,7 +33,7 @@ export default function Page() {
       cardno: 0,
       cvv: "",
       bankname: "",
-      amount: 0,
+      //amount: 0,
     },
   });
 
@@ -52,7 +52,7 @@ export default function Page() {
               for (const prop in v) {
                 data.append(prop, v[prop]);
               }
-
+              data.append("amount",parseFloat(quote));
               fetch(API_URL + "payment", {
                 method: "POST",
                 body: data,
@@ -85,7 +85,7 @@ export default function Page() {
                 </Grid.Col>
                 <Grid.Col span={3}>
                   <NumberInput type="password" label="CVV:" placeholder="Enter CVV" 
-                  {...form.getInputProps("")}/>
+                  {...form.getInputProps("cvv")}/>
                 </Grid.Col>
                 </Grid>
               {false && (
@@ -106,7 +106,11 @@ export default function Page() {
                 {...form.getInputProps("bankname")}
               />
 
-              <NumberInput label="Amount:" value={parseInt(quote)} disabled />
+              <NumberInput 
+              label="Amount:" 
+              value={parseFloat(quote)} 
+              disabled 
+              />
 
               <Group position="center">
                 <Button w={120} type="submit" radius="xl">
