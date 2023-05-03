@@ -24,6 +24,7 @@ import { FooterLinks } from "../components/FooterLinks";
 import { Banner } from "../components/Banner";
 import { QuoteHeader } from "../components/QuoteHeader";
 import { NavAccount } from "../components/NavAccount";
+import { lol } from "../components/data/UserQuoteStateSimulator";
 
 export default function Page() {
   const form = useForm({
@@ -50,8 +51,8 @@ export default function Page() {
               for (const prop in v) {
                 data.append(prop, v[prop]);
               }
-              data.append("user_id", JSON.parse(localStorage.getItem("quote"))["user_id"]);
-
+              // data.append("id", JSON.parse(localStorage.getItem("quote"))["user_id"]);
+              lol(JSON.parse(localStorage.getItem("quote"))["user_id"], "quote1", v, 1);
               fetch(API_URL + "vehicle", {
                 method: "POST",
                 body: data,
@@ -120,16 +121,15 @@ export default function Page() {
                 />
               </div>
 
-  
-                <Select
-                  label="Vehicle Maker:"
-                  required
-                  id="make"
-                  name="make"
-                  data={Object.keys(CAR_MODELS)}
-                  {...form.getInputProps("make")}
-                />
-      
+              <Select
+                label="Vehicle Maker:"
+                required
+                id="make"
+                name="make"
+                data={Object.keys(CAR_MODELS)}
+                {...form.getInputProps("make")}
+              />
+
               <Select
                 label="Vehicle Model:"
                 required
@@ -158,11 +158,11 @@ export default function Page() {
               />
 
               <Group position="right">
-              <Link href="/quote" style={{textDecoration:'none'}}>
-                <Button variant={"subtle"} radius="xs">
-                  Back
-                </Button>
-               </Link>
+                <Link href="/quote" style={{ textDecoration: "none" }}>
+                  <Button variant={"subtle"} radius="xs">
+                    Back
+                  </Button>
+                </Link>
                 <Button type="submit" radius="xs">
                   Save & Next
                 </Button>

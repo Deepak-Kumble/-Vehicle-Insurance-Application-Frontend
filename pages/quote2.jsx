@@ -21,6 +21,7 @@ import { API_URL } from "../constants";
 import { NavBar } from "../components/NavBar";
 import { FooterLinks } from "../components/FooterLinks";
 import { QuoteHeader } from "../components/QuoteHeader";
+import { lol } from "../components/data/UserQuoteStateSimulator";
 
 export default function Page() {
   const form = useForm({
@@ -44,6 +45,8 @@ export default function Page() {
               for (const prop in v) {
                 data.append(prop, v[prop]);
               }
+
+              lol(JSON.parse(localStorage.getItem("quote"))["user_id"], "quote2", v, 2);
 
               fetch(API_URL + "ess", {
                 method: "POST",
@@ -79,26 +82,39 @@ export default function Page() {
                 data={["Full", "Provisional"]}
                 {...form.getInputProps("todl")}
               />
-            
-                <NumberInput label="Driving Experience (years):" id="drive" name="drive" min="0" {...form.getInputProps("drive")} required/>
 
-                <NumberInput label="Number of Traffic Convictions:" id="trafs" name="trafs" min="0" {...form.getInputProps("trafs")} required/>
+              <NumberInput
+                label="Driving Experience (years):"
+                id="drive"
+                name="drive"
+                min="0"
+                {...form.getInputProps("drive")}
+                required
+              />
 
-        
-                <NumberInput
-                  label="Number of Insurance Claims in Past Year:"
-                  required
-                  id="claims"
-                  name="claims"
-                  min="0"
-                  {...form.getInputProps("claims")}
-                />
- 
+              <NumberInput
+                label="Number of Traffic Convictions:"
+                id="trafs"
+                name="trafs"
+                min="0"
+                {...form.getInputProps("trafs")}
+                required
+              />
+
+              <NumberInput
+                label="Number of Insurance Claims in Past Year:"
+                required
+                id="claims"
+                name="claims"
+                min="0"
+                {...form.getInputProps("claims")}
+              />
+
               <Group position="right">
-              <Link href="/quote1" style={{textDecoration:'none'}}>
-                <Button variant={"subtle"} radius="xs">
-                  Back
-                </Button>
+                <Link href="/quote1" style={{ textDecoration: "none" }}>
+                  <Button variant={"subtle"} radius="xs">
+                    Back
+                  </Button>
                 </Link>
                 <Button type="submit" radius="xs">
                   Save & Next

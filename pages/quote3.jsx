@@ -23,6 +23,7 @@ import { FooterLinks } from "../components/FooterLinks";
 import { Banner } from "../components/Banner";
 import { QuoteHeader } from "../components/QuoteHeader";
 import { NavAccount } from "../components/NavAccount";
+import { lol } from "../components/data/UserQuoteStateSimulator";
 
 export default function Page() {
   const form = useForm({
@@ -33,7 +34,7 @@ export default function Page() {
   });
   return (
     <>
-       <NavAccount />
+      <NavAccount />
       <Center my={"md"}>
         <Paper w={"60%"} shadow="lg" radius="xs" p="lg">
           <form
@@ -42,6 +43,8 @@ export default function Page() {
               for (const prop in v) {
                 data.append(prop, v[prop]);
               }
+
+              lol(JSON.parse(localStorage.getItem("quote"))["user_id"], "quote3", v, 3);
 
               fetch(API_URL + "other", {
                 method: "POST",
@@ -102,13 +105,13 @@ export default function Page() {
                 </label>
               </div>
               <Group position="right">
-              <Link href="/quote2" style={{textDecoration:'none'}}>
-                <Button variant={"subtle"} radius="xs">
-                  Back
-                </Button>
+                <Link href="/quote2" style={{ textDecoration: "none" }}>
+                  <Button variant={"subtle"} radius="xs">
+                    Back
+                  </Button>
                 </Link>
                 <Button type="submit" radius="xs">
-                Save & Next
+                  Save & Next
                 </Button>
               </Group>
             </Stack>
