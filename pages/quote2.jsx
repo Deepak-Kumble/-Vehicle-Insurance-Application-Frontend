@@ -10,7 +10,13 @@ import {
   Text,
   Group,
   Title,
+  Grid,
+  Col,
+  Tooltip,
+  Stepper,
+   Modal
 } from "@mantine/core";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { DateInput } from "@mantine/dates";
 import { Progress } from "@mantine/core";
@@ -21,6 +27,7 @@ import { API_URL } from "../constants";
 import { NavBar } from "../components/NavBar";
 import { FooterLinks } from "../components/FooterLinks";
 import { QuoteHeader } from "../components/QuoteHeader";
+import { Banner } from "../components/Banner";
 
 export default function Page() {
   const form = useForm({
@@ -31,13 +38,45 @@ export default function Page() {
       claims: 0,
     },
   });
+  useEffect(() => {
+    const formData = JSON.parse(localStorage.getItem("quote"));
+    if (formData) {
+      form.setValues(formData);
+    }
+  }, []);
+
+  const handleBackButtonClick = () => {
+    const queryParams = new URLSearchParams(form.values).toString();
+    Router.push(`/quote1?${queryParams}`);
+  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleInfoClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <>
       <NavBar />
-
-      <Center my={"md"}>
-        <Paper w={"60%"} shadow="lg" radius="xs" p="lg">
+      <br/>
+      <Banner/>
+      <br/>
+      <Stepper active={1} onStepClick={() => {}} orientation="horizontal" style={{ margin: '10px', padding: '10px' }}>
+        <Stepper.Step label="Step 1" description="Vehicle Details" />
+        <Stepper.Step label="Step 2" description="Driving Details" />
+        <Stepper.Step label="Step 3" description="Insurance Details" />
+        <Stepper.Step label="Step 4" description="Selection of Policy and Add-ons" />
+        <Stepper.Step label="Step 5" description="Payment" />
+      
+      </Stepper>
+      <br/>
+      <Grid gutter="xl">
+      <Col span={9}>
+          <Paper w="100%" h="100%" shadow="lg" radius="xs" p="lg">
           <form
             onSubmit={form.onSubmit((v) => {
               let data = new FormData();
@@ -67,8 +106,10 @@ export default function Page() {
                   console.error(error);
                 });
             })}>
+
+              
             <Stack spacing={"xs"}>
-              <QuoteHeader name={"DRIVING DETAILS"} step={3} />
+              <QuoteHeader name={"Driving Details"} step={2} />
 
               <Select
                 label="Type of Driving License:"
@@ -94,22 +135,74 @@ export default function Page() {
                   {...form.getInputProps("claims")}
                 />
  
-              <Group position="right">
-              <Link href="/quote1" style={{textDecoration:'none'}}>
-                <Button variant={"subtle"} radius="xs">
-                  Back
-                </Button>
-                </Link>
-                <Button type="submit" radius="xs">
-                  Save & Next
-                </Button>
-              </Group>
-            </Stack>
-          </form>
-        </Paper>
-      </Center>
+ <Group position="right">
+  <Button variant={"subtle"} radius="xs" onClick={handleBackButtonClick}>
+    Back
+  </Button>
+  <Button type="submit" radius="xs">
+    Save & Next
+  </Button>
+</Group>
+</Stack>
+            </form>
+          </Paper>
+          </Col>      
 
+
+          <Col span={3}>
+          <Center>
+            <Paper w="100%" shadow="lg" radius="xs" p="lg">
+              <h2>Already have a quote?</h2>
+              <Center>
+              <Button type="submit" radius="xs">
+                Retrieve it here
+              </Button>
+              </Center>
+              <div style={{ marginTop: '20px' }}></div> 
+              <h2>Why choose us...</h2>
+              <ul>
+              <li><b>Competitive Rates: </b>Get the coverage you need at a price that fits your budget with our competitive rates.</li>
+              <li><b>Comprehensive Coverage:</b> Our policies provide complete protection against accidents, theft, vandalism, and natural disasters.</li>
+              <li><b>Online Policy Management:</b> Conveniently manage your policy online, from updating details to making payments, all from the comfort of your home.</li>
+              <li><b>Defaqto 5 Star Rated:</b> Our policies have been awarded the top-notch Defaqto 5 Star rating for high-quality and comprehensive coverage.</li>
+              </ul>
+              <div style={{ marginTop: '20px', textAlign: 'center' }}>
+              <img src="https://www.direct.aviva.co.uk/quote/Direct/Motor/Content/images/defaqto-car-logo-2023.png" alt="Defaqto Car Logo" style={{ maxWidth: '60%', maxHeight: '60%' }} />
+                <Tooltip label="More Information" position="bottom" withArrow>
+                  <span style={{ marginLeft: '5px', cursor: 'pointer' }} onClick={handleInfoClick}>
+                  <br/>
+                  ⓘ
+                </span>
+              </Tooltip>
+              {isModalOpen && (
+                <Modal
+                  opened={isModalOpen}
+                  onClose={handleCloseModal}
+                >
+                  <Text>
+                  <ul>
+
+<li><b>Competitive Rates:</b> We offer competitive rates for vehicle insurance, ensuring that you get the coverage you need at a price that fits your budget.</li>
+
+<li><b>Comprehensive Coverage:</b> Our insurance policies provide comprehensive coverage for your vehicle, protecting you against a wide range of risks such as accidents, theft, vandalism, and natural disasters.</li>
+
+<li><b>24/7 Claims Support:</b> We understand that accidents can happen at any time. That's why we provide 24/7 claims support, allowing you to make new claims online or via phone whenever you need to.</li>
+
+<li><b>Defaqto 5 Star Rated:</b> Our insurance policies have been awarded the Defaqto 5 Star rating, which signifies their high quality and comprehensive coverage. You can have peace of mind knowing that you are getting top-notch protection for your vehicle.</li>
+              </ul>
+                  </Text>
+                </Modal>
+              )}
+            </div>
+          </Paper>
+        </Center>
+      </Col>
+      </Grid>
+
+  
       <FooterLinks />
-    </>
-  );
+  </>
+);
 }
+
+

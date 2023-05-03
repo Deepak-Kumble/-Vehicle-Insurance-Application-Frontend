@@ -1,7 +1,7 @@
 import { Button, Stack, Center, Navbar, NumberInput, Paper, Textarea, TextInput, Title } from "@mantine/core";
 import { useLocalStorage } from "@mantine/hooks";
 import Router from "next/router";
-import { Progress } from "@mantine/core";
+import { Progress, Stepper } from "@mantine/core";
 import { useEffect } from "react";
 import { useState } from "react";
 import { NavBar } from "../components/NavBar";
@@ -24,14 +24,34 @@ export default function Page() {
     Router.push("/quote5?q=" + val);
   };
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleInfoClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <>
        <NavAccount />
+       <br/>
+       <Banner/>
+       <br/>
 
-       <Center my={"md"}>
-        <Paper w={"60%"} shadow="lg" radius="xs" p="lg">
+       <Stepper active={3} onStepClick={() => {}} orientation="horizontal">
+        <Stepper.Step label="Step 1" description="Vehicle Details" />
+        <Stepper.Step label="Step 2" description="Driving Details" />
+        <Stepper.Step label="Step 3" description="Insurance Details" />
+        <Stepper.Step label="Step 4" description="Selection of Policy and Add-ons" />
+        <Stepper.Step label="Step 5" description="Payment" />
+      
+      </Stepper>
+
+        <Paper w={"100%"} shadow="lg" radius="xs" p="lg">
         <Stack spacing={"xs"}>
-        <QuoteHeader name="LIST OF POLICIES" step={5} />
+        <QuoteHeader name="List of Policies" step={4} />
       
           <br />
           <Policy1 quote={quote} BtnClick={BtnClick} />
@@ -43,8 +63,6 @@ export default function Page() {
           <Policy3 quote={quote} BtnClick={BtnClick} />
           </Stack>
         </Paper>
-        
-      </Center>
 
       <FooterLinks />
     </>

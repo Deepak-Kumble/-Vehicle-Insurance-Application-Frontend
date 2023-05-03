@@ -172,7 +172,7 @@ export function NavBar() {
 
               <HoverCard.Dropdown sx={{ overflow: "hidden" }}>
                 <Group position="apart" px="md">
-                  <Text fw={500}> <Link href="/quote" className={classes.link}style={{textDecoration:'none'}} position="center"> Get your personalized Quote today!</Link></Text>
+                  <Text fw={500}> <Link href="/quote1" className={classes.link}style={{textDecoration:'none'}} position="center"> Get your personalized Quote today!</Link></Text>
                 </Group>
 
                 <Divider my="sm" mx="-md" color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"} />
@@ -193,6 +193,9 @@ export function NavBar() {
                 </div>
               </HoverCard.Dropdown>
             </HoverCard>
+            <Link href="/" className={classes.link}>
+              Retrieve Quote
+            </Link>
 
             <Link href="/about" className={classes.link}>
               About Us

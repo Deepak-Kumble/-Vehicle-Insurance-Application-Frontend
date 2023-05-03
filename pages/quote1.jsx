@@ -1,21 +1,10 @@
-import {
-  Button,
-  Center,
-  Group,
-  NumberInput,
-  Paper,
-  Select,
-  Stack,
-  Text,
-  Textarea,
-  TextInput,
-  Title,
-} from "@mantine/core";
+import { Col,NumberInput,CheckIcon, Tooltip, Modal, Text } from "@mantine/core";
+import { Grid } from "@mantine/core";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Progress } from "@mantine/core";
-import { DateInput } from "@mantine/dates";
-import { useForm } from "@mantine/form";
 import Router from "next/router";
+import { useRouter } from "next/router";
+import { useForm } from "@mantine/form";
 import { CAR_MODELS } from "../components/data/CarModelMakers";
 import { API_URL } from "../constants";
 import { Navbar } from "@mantine/core";
@@ -24,8 +13,11 @@ import { FooterLinks } from "../components/FooterLinks";
 import { Banner } from "../components/Banner";
 import { QuoteHeader } from "../components/QuoteHeader";
 import { NavAccount } from "../components/NavAccount";
+import { Button, Center, Group, Paper, Select, Stack, TextInput } from "@mantine/core";
+import { Stepper } from "@mantine/core";
 
 export default function Page() {
+  const router = useRouter();
   const form = useForm({
     initialValues: {
       regis: "",
@@ -37,39 +29,74 @@ export default function Page() {
     },
   });
 
+  useEffect(() => {
+    const formData = JSON.parse(localStorage.getItem("quote"));
+    if (formData) {
+      form.setValues(formData);
+    }
+  }, []);
+
+  const handleFormSubmit = (v) => {
+    let data = new FormData();
+    for (const prop in v) {
+      data.append(prop, v[prop]);
+    }
+
+    fetch(API_URL + "vehicle", {
+      method: "POST",
+      body: data,
+    })
+      .then((response) => {
+        if (response.ok) {
+          localStorage.setItem("quote", JSON.stringify(v));
+          router.push("/quote2");
+        } else {
+          alert("An error occurred while saving vehicle details.");
+        }
+      })
+      .catch((error) => {
+        alert("An error occurred while saving vehicle details.");
+        console.error(error);
+      });
+  };
+
+  const handleBackButtonClick = () => {
+    const queryParams = new URLSearchParams(form.values).toString();
+    Router.push(`/quote?${queryParams}`);
+  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleInfoClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <NavAccount />
+      <br/>
+      <Banner/>
+      <br/>
+      <Stepper active={0} onStepClick={() => {}} orientation="horizontal" style={{ margin: '10px', padding: '10px' }}>
+        <Stepper.Step label="Step 1" description="Vehicle Details" />
+        <Stepper.Step label="Step 2" description="Driving Details" />
+        <Stepper.Step label="Step 3" description="Insurance Details" />
+        <Stepper.Step label="Step 4" description="Selection of Policy and Add-ons" />
+        <Stepper.Step label="Step 5" description="Payment" />
+      
+      </Stepper>
 
-      <Center my={"md"}>
-        <Paper w={"60%"} shadow="lg" radius="xs" p="lg">
-          <form
-            onSubmit={form.onSubmit((v) => {
-              // v.dob = v.dob.getUTCDate();
-              let data = new FormData();
-              for (const prop in v) {
-                data.append(prop, v[prop]);
-              }
-
-              fetch(API_URL + "vehicle", {
-                method: "POST",
-                body: data,
-              })
-                .then((response) => {
-                  if (response.ok) {
-                    localStorage.setItem("quote", JSON.stringify(v));
-                    Router.push("/quote2");
-                  } else {
-                    alert("An error occurred while saving vehicle details.");
-                  }
-                })
-                .catch((error) => {
-                  alert("An error occurred while saving vehicle details.");
-                  console.error(error);
-                });
-            })}>
+<br/>
+<Grid gutter="xl">
+<Col span={9}>
+          <Paper w="100%" h="100%" shadow="lg" radius="xs" p="lg">
+       
+          <form onSubmit={form.onSubmit(handleFormSubmit)}>
             <Stack spacing={"xs"}>
-              <QuoteHeader name="VEHICLE DETAILS" step={2} />
+              <QuoteHeader name="Vehicle Details" step={1} />
 
               <TextInput
                 label="Registration Number:"
@@ -79,95 +106,143 @@ export default function Page() {
                 {...form.getInputProps("regis")}
               />
 
-              <div class="form-group">
-                <Select
-                  label="Year of Registration:"
-                  required
-                  id="yor"
-                  name="yor"
-                  data={[
-                    "2023",
-                    "2022",
-                    "2021",
-                    "2020",
-                    "2019",
-                    "2018",
-                    "2017",
-                    "2016",
-                    "2015",
-                    "2014",
-                    "2013",
-                    "2012",
-                    "2011",
-                    "2010",
-                    "2009",
-                    "2008",
-                    "2007",
-                    "2006",
-                    "2005",
-                    "2004",
-                    "2003",
-                    "2002",
-                    "2001",
-                    "2000",
-                  ]}
-                  {...form.getInputProps("yor")}
-                />
-              </div>
-
-  
-                <Select
-                  label="Vehicle Maker:"
-                  required
-                  id="make"
-                  name="make"
-                  data={Object.keys(CAR_MODELS)}
-                  {...form.getInputProps("make")}
-                />
-      
               <Select
-                label="Vehicle Model:"
+                label="Year of Registration:"
                 required
-                id="model"
-                name="model"
-                data={CAR_MODELS[form.values.make] || ["NONE"]}
-                {...form.getInputProps("model")}
+                id="yor"
+                name="yor"
+                data={[
+                  "2023",
+                  "2022",
+                  "2021",
+                  "2020",
+                  "2019",
+                  "2018",
+                  "2017",
+                  "2016",
+                  "2015",
+                  "2014",
+                  "2013",
+                  "2012",
+                  "2011",
+                  "2010",
+                  "2009",
+                  "2008",
+                  "2007",
+                  "2006",
+                  "2005",
+                  "2004",
+                  "2003",
+                  "2002",
+                  "2001",
+                  "2000",
+                ]}
+                {...form.getInputProps("yor")}
               />
 
               <Select
-                id="fuel"
+                label="Vehicle Maker:"
                 required
-                label="Fuel Type:"
-                name="fuel"
-                data={["Petrol", "Diesel"]}
-                {...form.getInputProps("fuel")}
-              />
+                id="make"
+                name="make"
+                data={Object.keys(CAR_MODELS)}
+{...form.getInputProps("make")}
+/>
 
-              <Select
-                label="Gearbox Type:"
-                required
-                id="gearbox"
-                name="gearbox"
-                data={["Automatic", "Manual"]}
-                {...form.getInputProps("gearbox")}
-              />
+<Select
+  label="Vehicle Model:"
+  required
+  id="model"
+  name="model"
+  data={CAR_MODELS[form.values.make] || ["NONE"]}
+  {...form.getInputProps("model")}
+/>
 
-              <Group position="right">
-               Router.back("/quote");
-                <Button variant={"subtle"} radius="xs">
-                  Back
-                </Button>
-               
-                <Button type="submit" radius="xs">
-                  Save & Next
-                </Button>
-              </Group>
-            </Stack>
-          </form>
-        </Paper>
-      </Center>
+<Select
+  id="fuel"
+  required
+  label="Fuel Type:"
+  name="fuel"
+  data={["Petrol", "Diesel"]}
+  {...form.getInputProps("fuel")}
+/>
 
-      <FooterLinks />
-    </>
-  );
+<Select
+  label="Gearbox Type:"
+  required
+  id="gearbox"
+  name="gearbox"
+  data={["Automatic", "Manual"]}
+  {...form.getInputProps("gearbox")}
+/>
+
+<Group position="right">
+  <Button variant={"subtle"} radius="xs" onClick={handleBackButtonClick}>
+    Back
+  </Button>
+  <Button type="submit" radius="xs">
+    Save & Next
+  </Button>
+</Group>
+</Stack>
+            </form>
+          </Paper>
+          </Col>      
+
+
+          <Col span={3}>
+          <Center>
+            <Paper w="100%" shadow="lg" radius="xs" p="lg">
+              <h2>Already have a quote?</h2>
+              <Center>
+              <Button type="submit" radius="xs">
+                Retrieve it here
+              </Button>
+              </Center>
+              <div style={{ marginTop: '20px' }}></div> 
+              <h2>Why choose us...</h2>
+              <ul>
+              <li><b>Competitive Rates: </b>Get the coverage you need at a price that fits your budget with our competitive rates.</li>
+              <li><b>Comprehensive Coverage:</b> Our policies provide complete protection against accidents, theft, vandalism, and natural disasters.</li>
+              <li><b>Online Policy Management:</b> Conveniently manage your policy online, from updating details to making payments, all from the comfort of your home.</li>
+              <li><b>Defaqto 5 Star Rated:</b> Our policies have been awarded the top-notch Defaqto 5 Star rating for high-quality and comprehensive coverage.</li>
+              </ul>
+              <div style={{ marginTop: '20px', textAlign: 'center' }}>
+              <img src="https://www.direct.aviva.co.uk/quote/Direct/Motor/Content/images/defaqto-car-logo-2023.png" alt="Defaqto Car Logo" style={{ maxWidth: '60%', maxHeight: '60%' }} />
+                <Tooltip label="More Information" position="bottom" withArrow>
+                  <span style={{ marginLeft: '5px', cursor: 'pointer' }} onClick={handleInfoClick}>
+                  <br/>
+                  ⓘ
+                </span>
+              </Tooltip>
+              {isModalOpen && (
+                <Modal
+                  opened={isModalOpen}
+                  onClose={handleCloseModal}
+                >
+                  <Text>
+                  <ul>
+
+<li><b>Competitive Rates:</b> We offer competitive rates for vehicle insurance, ensuring that you get the coverage you need at a price that fits your budget.</li>
+
+<li><b>Comprehensive Coverage:</b> Our insurance policies provide comprehensive coverage for your vehicle, protecting you against a wide range of risks such as accidents, theft, vandalism, and natural disasters.</li>
+
+<li><b>24/7 Claims Support:</b> We understand that accidents can happen at any time. That's why we provide 24/7 claims support, allowing you to make new claims online or via phone whenever you need to.</li>
+
+<li><b>Defaqto 5 Star Rated:</b> Our insurance policies have been awarded the Defaqto 5 Star rating, which signifies their high quality and comprehensive coverage. You can have peace of mind knowing that you are getting top-notch protection for your vehicle.</li>
+              </ul>
+                  </Text>
+                </Modal>
+              )}
+            </div>
+          </Paper>
+        </Center>
+      </Col>
+    </Grid>
+
+    <FooterLinks />
+  </>
+);
 }
+
+

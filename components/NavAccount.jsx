@@ -193,7 +193,11 @@ import {
                   </div>
                 </HoverCard.Dropdown>
               </HoverCard>
-  
+
+              <Link href="/" className={classes.link}>
+              Retrieve Quote
+            </Link>
+
               <Link href="/about" className={classes.link}>
                 About Us
               </Link>

@@ -4,12 +4,12 @@ import { Banner } from "./Banner";
 export function QuoteHeader({ name, step }) {
   return (
     <>
-      <Banner />
+      
       <Text align="center">
         <Title order={2}>{name}</Title>
-        Step {step} of 6
+        Step {step} of 5
       </Text>
-      <Progress radius="lg" size="lg" value={(100 / 6) * step} />
+      <Progress radius="lg" size="lg" value={(100 / 5) * step} />
     </>
   );
 }

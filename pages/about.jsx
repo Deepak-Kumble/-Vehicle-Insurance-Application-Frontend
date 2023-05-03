@@ -12,9 +12,7 @@ import { HeroSection } from "../components/HeroSection";
 export default function Page() {
   return (
     <>
-      <Helmet>
-        <title>Auto Armor | Payment</title> {/* Set the page title */}
-      </Helmet>
+  
 
       <NavBar />
 

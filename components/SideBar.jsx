@@ -14,7 +14,7 @@ import { Radio, Group } from "@mantine/core";
 import { QuoteHeader } from "../components/QuoteHeader";
 import { Stepper } from "@mantine/core";
 
-export default function Page() {
+export default function SideBar() {
   const form = useForm({
     initialValues: {
       firstName: "",
@@ -73,7 +73,7 @@ export default function Page() {
       <Grid gutter="xl">
       
         <Col span={9}>
-          <Paper w="100%" h="100%" shadow="lg" radius="xs" p="lg">
+          <Paper w="100%" shadow="lg" radius="xs" p="lg">
        
             <form onSubmit={form.onSubmit(handleFormSubmit)}>
               <Stack spacing="xs">
@@ -177,14 +177,14 @@ export default function Page() {
               <div style={{ marginTop: '20px' }}></div> 
               <h2>Why choose us...</h2>
               <ul>
-              <li><b>Competitive Rates: </b>Get the coverage you need at a price that fits your budget with our competitive rates.</li>
-              <li><b>Comprehensive Coverage:</b> Our policies provide complete protection against accidents, theft, vandalism, and natural disasters.</li>
-              <li><b>Online Policy Management:</b> Conveniently manage your policy online, from updating details to making payments, all from the comfort of your home.</li>
-              <li><b>Defaqto 5 Star Rated:</b> Our policies have been awarded the top-notch Defaqto 5 Star rating for high-quality and comprehensive coverage.</li>
-             
+                <li>Uninsured driver promise</li>
+                <li>Make new claims online or via phone 24/7</li>
+                <li>You can manage your policy online through MyAviva</li>
+                <li>Defaqto 5 Star rated cover</li>
+                <li>Out of charge recovery for electric vehicles</li>
               </ul>
               <div style={{ marginTop: '20px', textAlign: 'center' }}>
-                <img src="https://www.direct.aviva.co.uk/quote/Direct/Motor/Content/images/defaqto-car-logo-2023.png" alt="Defaqto Car Logo" style={{ maxWidth: '60%', maxHeight: '60%' }} />
+                <img src="https://www.direct.aviva.co.uk/quote/Direct/Motor/Content/images/defaqto-car-logo-2023.png" alt="Defaqto Car Logo" style={{ maxWidth: '75%', maxHeight: '75%' }} />
                 <Tooltip label="More Information" position="bottom" withArrow>
                   <span style={{ marginLeft: '5px', cursor: 'pointer' }} onClick={handleInfoClick}>
                   <br/>
@@ -193,20 +193,23 @@ export default function Page() {
               </Tooltip>
               {isModalOpen && (
                 <Modal
+                  title="More Information"
                   opened={isModalOpen}
                   onClose={handleCloseModal}
                 >
                   <Text>
-                  <ul>
-
-<li><b>Competitive Rates:</b> We offer competitive rates for vehicle insurance, ensuring that you get the coverage you need at a price that fits your budget.</li>
-
-<li><b>Comprehensive Coverage:</b> Our insurance policies provide comprehensive coverage for your vehicle, protecting you against a wide range of risks such as accidents, theft, vandalism, and natural disasters.</li>
-
-<li><b>24/7 Claims Support:</b> We understand that accidents can happen at any time. That's why we provide 24/7 claims support, allowing you to make new claims online or via phone whenever you need to.</li>
-
-<li><b>Defaqto 5 Star Rated:</b> Our insurance policies have been awarded the Defaqto 5 Star rating, which signifies their high quality and comprehensive coverage. You can have peace of mind knowing that you are getting top-notch protection for your vehicle.</li>
-              </ul>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Phasellus consectetur luctus tempor. Vestibulum ante ipsum
+                    primis in faucibus orci luctus et ultrices posuere cubilia
+                    Curae; Quisque sodales eros vitae maximus suscipit. In hac
+                    habitasse platea dictumst. Pellentesque habitant morbi
+                    tristique senectus et netus et malesuada fames ac turpis
+                    egestas. Donec in magna semper, eleifend lacus vitae,
+                    consectetur est. Vestibulum condimentum massa et nisi
+                    aliquam, id malesuada mauris eleifend. Morbi rhoncus massa
+                    ac dui interdum, sit amet viverra metus fermentum. Sed
+                    pharetra, dui ac rhoncus condimentum, est neque aliquet
+                    lacus, vel facilisis leo odio in lectus.
                   </Text>
                 </Modal>
               )}

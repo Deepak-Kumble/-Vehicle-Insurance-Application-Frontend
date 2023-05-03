@@ -10,6 +10,7 @@ import {
   Title,
   Text,
   Group,
+  Stepper
 } from "@mantine/core";
 import { Progress } from "@mantine/core";
 import { API_URL } from "../constants";
@@ -42,9 +43,19 @@ export default function Page() {
   return (
     <>
       <NavAccount />
+      <br/>
+      <Banner/>
+      <br/>
+      <Stepper active={4} onStepClick={() => {}} orientation="horizontal">
+        <Stepper.Step label="Step 1" description="Vehicle Details" />
+        <Stepper.Step label="Step 2" description="Driving Details" />
+        <Stepper.Step label="Step 3" description="Insurance Details" />
+        <Stepper.Step label="Step 4" description="Selection of Policy and Add-ons" />
+        <Stepper.Step label="Step 5" description="Payment" />
+        </Stepper>
 
-      <Center my={50}>
-        <Paper w={"50%"} shadow="lg" radius="xs" p="lg">
+ 
+        <Paper w={"100%"} shadow="lg" radius="xs" p="lg">
          
         <form
             onSubmit={form.onSubmit((v) => {
@@ -71,7 +82,7 @@ export default function Page() {
                 });
             })}>
             <Stack spacing={"md"}>
-            <QuoteHeader name="PAYMENT" step={6} />
+            <QuoteHeader name="Payment" step={5} />
             <Grid>
                 <Grid.Col span={9}>
                   <NumberInput
@@ -116,7 +127,7 @@ export default function Page() {
             </Stack>
           </form>
         </Paper>
-      </Center>
+
       <FooterLinks />
     </>
   );

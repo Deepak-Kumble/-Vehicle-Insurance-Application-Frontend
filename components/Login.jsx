@@ -20,7 +20,18 @@ const useStyles = createStyles((theme) => ({
     justifyContent: "left",
     backgroundImage: "url(https://iiflinsurance.com/images/2020/07/44-01.jpg)",
     backgroundSize: "cover",
+    position: "relative", 
   },
+
+  overlay: {
+    position: "absolute", /* Position the overlay absolutely within the wrapper */
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(255, 255, 255, 0.5)", /* Adjust the alpha value to make it lighter */
+  },
+  
 
   // form: {
   //   borderRight: `${rem(1)} solid ${
