@@ -103,6 +103,7 @@ export default function Page() {
                 required
                 id="regis"
                 name="regis"
+                size="lg"
                 {...form.getInputProps("regis")}
               />
 
@@ -111,6 +112,7 @@ export default function Page() {
                 required
                 id="yor"
                 name="yor"
+                size="lg"
                 data={[
                   "2023",
                   "2022",
@@ -145,6 +147,7 @@ export default function Page() {
                 required
                 id="make"
                 name="make"
+                size="lg"
                 data={Object.keys(CAR_MODELS)}
 {...form.getInputProps("make")}
 />
@@ -154,6 +157,7 @@ export default function Page() {
   required
   id="model"
   name="model"
+  size="lg"
   data={CAR_MODELS[form.values.make] || ["NONE"]}
   {...form.getInputProps("model")}
 />
@@ -163,6 +167,7 @@ export default function Page() {
   required
   label="Fuel Type:"
   name="fuel"
+  size="lg"
   data={["Petrol", "Diesel"]}
   {...form.getInputProps("fuel")}
 />
@@ -172,6 +177,7 @@ export default function Page() {
   required
   id="gearbox"
   name="gearbox"
+  size="lg"
   data={["Automatic", "Manual"]}
   {...form.getInputProps("gearbox")}
 />

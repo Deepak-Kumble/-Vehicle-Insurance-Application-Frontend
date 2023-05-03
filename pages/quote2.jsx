@@ -117,13 +117,14 @@ export default function Page() {
                 placeholder="Select Type of Driving License:"
                 id="todl"
                 name="todl"
+                size="lg"
                 data={["Full", "Provisional"]}
                 {...form.getInputProps("todl")}
               />
             
-                <NumberInput label="Driving Experience (years):" id="drive" name="drive" min="0" {...form.getInputProps("drive")} required/>
+                <NumberInput label="Driving Experience (years):" id="drive" name="drive" min="0" size="lg" {...form.getInputProps("drive")} required/>
 
-                <NumberInput label="Number of Traffic Convictions:" id="trafs" name="trafs" min="0" {...form.getInputProps("trafs")} required/>
+                <NumberInput label="Number of Traffic Convictions:" id="trafs" name="trafs" min="0" size="lg" {...form.getInputProps("trafs")} required/>
 
         
                 <NumberInput
@@ -131,6 +132,7 @@ export default function Page() {
                   required
                   id="claims"
                   name="claims"
+                  size="lg"
                   min="0"
                   {...form.getInputProps("claims")}
                 />

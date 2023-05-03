@@ -102,7 +102,7 @@ export function Policy2({ quote, BtnClick }) {
       <Text size="l" weight={500} mt="md">
         <h2>Add-ons</h2>
       </Text>
-      <Text size="sm" mt="sm" color="dimmed">
+      <Text size="md" mt="sm">
         <ul>
           {addOns.map((addOn, index) => (
             <li key={index}>

@@ -113,7 +113,7 @@ export default function Page() {
             <Stack spacing={"xs"}>
               <QuoteHeader name="Insurance Details" step={3} />
 
-              <Radio.Group {...form.getInputProps("renewal_type")} label="Insurance Renewal Type:" required>
+              <Radio.Group {...form.getInputProps("renewal_type")} label="Insurance Renewal Type:" size="lg" required>
                 <Group>
                   <Radio label="Upgrade" value="Upgrade" />
                   <Radio label="Existing" value="Existing" />
@@ -124,6 +124,7 @@ export default function Page() {
                 id="cover_type"
                 name="cover_type"
                 label="Insurance Covering Date:"
+                size="lg"
                 required
                 {...form.getInputProps("cover_type")}
               />
@@ -131,7 +132,7 @@ export default function Page() {
               <div class="checkbox-container">
                 <input type="checkbox" id="terms-conditions" name="terms-conditions" required />
                 <label for="terms-conditions">
-                  I agree that all the information provided is true to my knowledge. Terms and Conditions
+                    I agree that all the information provided is true to my knowledge. Terms and Conditions
                   apply.
                 </label>
               </div>

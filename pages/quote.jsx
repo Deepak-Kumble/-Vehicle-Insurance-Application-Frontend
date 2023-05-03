@@ -81,6 +81,7 @@ export default function Page() {
                   type="text"
                   label="First Name:"
                   name="firstName"
+                  size="lg"
                   required
                   {...form.getInputProps("firstName")}
                 />
@@ -90,11 +91,12 @@ export default function Page() {
                   id="lastName"
                   label="Last Name:"
                   name="lastName"
+                  size="lg"
                   required
                   {...form.getInputProps("lastName")}
                 />
 
-                <Radio.Group {...form.getInputProps("gender")} label="Gender:" required>
+                <Radio.Group {...form.getInputProps("gender")} label="Gender:" size="lg" required>
                   <Group>
                     <Radio label="Male" value="Male" />
                     <Radio label="Female" value="Female" />
@@ -105,6 +107,7 @@ export default function Page() {
                   label="Date of Birth:"
                   id="dob"
                   name="dob"
+                  size="lg"
                   required
                   {...form.getInputProps("dob")}
                 />
@@ -114,6 +117,7 @@ export default function Page() {
                   type="email"
                   id="email"
                   name="email"
+                  size="lg"
                   required
                   {...form.getInputProps("email")}
                 />
@@ -123,6 +127,7 @@ export default function Page() {
                   type="tel"
                   id="num"
                   name="num"
+                  size="lg"
                   required
                   {...form.getInputProps("num")}
                 />
@@ -132,6 +137,7 @@ export default function Page() {
                   id="address"
                   name="addr"
                   rows="5"
+                  size="lg"
                   required
                   {...form.getInputProps("addr")}
                 />
@@ -141,6 +147,7 @@ export default function Page() {
                   id="userName"
                   label="Username:"
                   name="username"
+                  size="lg"
                   required
                   {...form.getInputProps("username")}
                 />
@@ -150,6 +157,7 @@ export default function Page() {
                   id="password"
                   label="Password:"
                   name="password"
+                  size="lg"
                   required
                   {...form.getInputProps("password")}
                 />

@@ -44,7 +44,7 @@ export function Policy1({ quote, BtnClick }) {
       <Text size="l" weight={500} mt="md">
         <h2>Policy A</h2>
       </Text>
-      <Text size="sm" mt="sm" color="dimmed">
+      <Text size="md" mt="sm">
         <p>
           Our Policy A is a great choice for those who are looking for basic coverage at an affordable price.
           This policy offers the following:
@@ -59,9 +59,9 @@ export function Policy1({ quote, BtnClick }) {
     
         <p>
         <b>  
-     
+        <Text size="lg">
         Generated Quote amount: &pound; {parseFloat(quote)}
-
+        </Text>
         </b>
         </p>
         <Button radius="xl" onClick={() => BtnClick(parseFloat(quote))}>
