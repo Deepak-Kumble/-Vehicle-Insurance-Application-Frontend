@@ -12,22 +12,21 @@ import {
   Group,
   Stepper
 } from "@mantine/core";
-import { Progress } from "@mantine/core";
+import { useState } from "react";
 import { API_URL } from "../constants";
-import { useForm } from "@mantine/form";
-import { useLocalStorage } from "@mantine/hooks";
-import Router, { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useForm } from "@mantine/hooks";
+import Router from "next/router";
 import { NavBar } from "../components/NavBar";
 import { FooterLinks } from "../components/FooterLinks";
-import { Banner} from "../components/Banner";
+import { Banner } from "../components/Banner";
 import { NavAccount } from "../components/NavAccount";
 import { QuoteHeader } from "../components/QuoteHeader";
+
 export default function Page() {
-  const [quote] = useLocalStorage({
-    key: "quote_select_value",
-    defaultValue: null,
-  });
+  const [quote, setQuote] = useState(0);
+  const [tax, setTax] = useState(0);
+  const [addOnsTotal, setAddOnsTotal] = useState(0);
+  const [grandTotal, setGrandTotal] = useState(0);
 
   const form = useForm({
     initialValues: {
@@ -38,7 +37,41 @@ export default function Page() {
     },
   });
 
-  // console.log(form.values.amount);
+  const calculateAmounts = () => {
+    // Calculate the amounts based on the quote, tax, and add-ons
+    const calculatedTax = quote * 0.1; // Assuming tax is 10% of the quote
+    const calculatedGrandTotal = quote + calculatedTax + addOnsTotal;
+
+    setTax(calculatedTax);
+    setGrandTotal(calculatedGrandTotal);
+  };
+
+  const handleFormSubmit = (values) => {
+    // Save form data to localStorage
+    localStorage.setItem("paymentDetails", JSON.stringify(values));
+
+    const formData = new FormData();
+    for (const prop in values) {
+      formData.append(prop, values[prop]);
+    }
+
+    fetch(API_URL + "payment", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert("Payment Successful!");
+          Router.push("/");
+        } else {
+          alert("An error occurred while processing the payment.");
+        }
+      })
+      .catch((error) => {
+        alert("An error occurred while processing the payment.");
+        console.error(error);
+      });
+  };
 
   return (
     <>
@@ -52,83 +85,75 @@ export default function Page() {
         <Stepper.Step label="Step 3" description="Insurance Details" />
         <Stepper.Step label="Step 4" description="Selection of Policy and Add-ons" />
         <Stepper.Step label="Step 5" description="Payment" />
-        </Stepper>
+      </Stepper>
 
- 
-        <Paper w={"100%"} shadow="lg" radius="xs" p="lg">
-         
-        <form
-            onSubmit={form.onSubmit((v) => {
-              let data = new FormData();
-              for (const prop in v) {
-                data.append(prop, v[prop]);
-              }
-
-              fetch(API_URL + "payment", {
-                method: "POST",
-                body: data,
-              })
-                .then((response) => {
-                  if (response.ok) {
-                    alert("Payment Successful!");
-                    Router.push("/");
-                  } else {
-                    alert("An error occurred while saving driving details.");
-                  }
-                })
-                .catch((error) => {
-                  alert("An error occurred while saving driving details.");
-                  console.error(error);
-                });
-            })}>
-            <Stack spacing={"md"}>
+      <Paper w={"100%"} shadow="lg" radius="xs" p="lg">
+        <form onSubmit={form.handleSubmit(handleFormSubmit)}>
+          <Stack spacing={"md"}>
             <QuoteHeader name="Payment" step={5} />
+
             <Grid>
-                <Grid.Col span={9}>
-                  <NumberInput
-                    label="Card Number:"
-                    id="card-number"
-                    name="cardno"
-                    class="form-control"
-                    placeholder="Enter Card Number"
-                    {...form.getInputProps("cardno")}
-                  />
-                </Grid.Col>
-                <Grid.Col span={3}>
-                  <NumberInput type="password" label="CVV:" placeholder="Enter CVV" 
-                  {...form.getInputProps("")}/>
-                </Grid.Col>
-                </Grid>
-              {false && (
-                <TextInput
-                  label="UPI ID"
-                  id="upi-id"
-                  name="upi"
+              <Grid.Col span={9}>
+                <NumberInput
+                  label="Card Number:"
+                  id="card-number"
+                  name="cardno"
                   class="form-control"
-                  placeholder="Enter UPI ID"
+                  placeholder="Enter Card Number"
+                  {...form.getFieldProps("cardno")}
                 />
-              )}
+              </Grid.Col>
+              // ...Previous code
 
-              <Select
-                label="Bank Name:"
-                id="bank-name"
-                name="bankname"
-                data={["HSBC", "Barclays", "Lloyds Banking Group", "Natwest Group"]}
-                {...form.getInputProps("bankname")}
-              />
+              <Grid.Col span={3}>
+                <NumberInput
+                  type="password"
+                  label="CVV:"
+                  placeholder="Enter CVV"
+                  {...form.getFieldProps("cvv")}
+                />
+              </Grid.Col>
+            </Grid>
 
-              <NumberInput label="Amount:" value={parseInt(quote)} disabled />
+     
+            <NumberInput
+              label="Generated Quote:"
+              value={quote}
+              disabled
+            />
 
-              <Group position="center">
-                <Button w={120} type="submit" radius="xl">
-                  Pay
-                </Button>
-              </Group>
-            </Stack>
-          </form>
-        </Paper>
+        
+            <NumberInput
+              label="Tax Amount:"
+              value={tax}
+              disabled
+            />
+
+    
+            <NumberInput
+              label="Add-ons Amount:"
+              value={addOnsTotal}
+              disabled
+            />
+
+    
+            <NumberInput
+              label="Grand Total:"
+              value={grandTotal}
+              disabled
+            />
+
+            <Group position="center">
+              <Button type="submit" radius="xl">
+                Pay
+              </Button>
+            </Group>
+          </Stack>
+        </form>
+      </Paper>
 
       <FooterLinks />
     </>
   );
 }
+
