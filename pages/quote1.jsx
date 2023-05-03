@@ -50,6 +50,7 @@ export default function Page() {
               for (const prop in v) {
                 data.append(prop, v[prop]);
               }
+              data.append("user_id", JSON.parse(localStorage.getItem("quote"))["user_id"]);
 
               fetch(API_URL + "vehicle", {
                 method: "POST",
@@ -57,7 +58,11 @@ export default function Page() {
               })
                 .then((response) => {
                   if (response.ok) {
-                    localStorage.setItem("quote", JSON.stringify(v));
+                    let quoteData = JSON.parse(localStorage.getItem("quote"));
+                    let x = {
+                      ...v,
+                      ...quoteData,
+                    };
                     Router.push("/quote2");
                   } else {
                     alert("An error occurred while saving vehicle details.");
