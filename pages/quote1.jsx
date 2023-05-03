@@ -195,12 +195,14 @@ export default function Page() {
             <Paper w="100%" shadow="lg" radius="xs" p="lg">
               <h2>Already have a quote?</h2>
               <Center>
+              <Link href="/retrieve">
               <Button type="submit" radius="xs">
                 Retrieve it here
               </Button>
+              </Link>
               </Center>
               <div style={{ marginTop: '20px' }}></div> 
-              <h2>Why choose us...</h2>
+              <h2>Our Offerings...</h2>
               <ul>
               <li><b>Competitive Rates: </b>Get the coverage you need at a price that fits your budget with our competitive rates.</li>
               <li><b>Comprehensive Coverage:</b> Our policies provide complete protection against accidents, theft, vandalism, and natural disasters.</li>

@@ -126,6 +126,11 @@ export function FooterLinks({ data }) {
             </Link>
             </Group>
             <Group sx={{ height: "100%" }} spacing={0} className={classes.hiddenMobile}>
+            <Link href="/retrieve" className={classes.link}>
+            Retrieve Quote
+            </Link>
+            </Group>
+            <Group sx={{ height: "100%" }} spacing={0} className={classes.hiddenMobile}>
             <Link href="/about" className={classes.link}>
             About Us
             </Link>

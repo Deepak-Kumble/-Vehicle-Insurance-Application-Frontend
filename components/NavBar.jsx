@@ -193,7 +193,7 @@ export function NavBar() {
                 </div>
               </HoverCard.Dropdown>
             </HoverCard>
-            <Link href="/" className={classes.link}>
+            <Link href="/retrieve" className={classes.link}>
               Retrieve Quote
             </Link>
 

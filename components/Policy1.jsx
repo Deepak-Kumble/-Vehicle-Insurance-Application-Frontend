@@ -2,6 +2,11 @@ import { createStyles, Paper, Text, ThemeIcon, rem, Button } from "@mantine/core
 import { IconColorSwatch, IconInfoSquareRoundedFilled } from "@tabler/icons-react";
 
 const useStyles = createStyles((theme) => ({
+   cardContainer: {
+    display: "flex",
+    gap: theme.spacing.xl,
+    overflowX: "auto",
+  },
   card: {
     position: "relative",
     cursor: "pointer",
@@ -9,6 +14,7 @@ const useStyles = createStyles((theme) => ({
     transition: "transform 150ms ease, box-shadow 100ms ease",
     padding: theme.spacing.xl,
     paddingLeft: `calc(${theme.spacing.xl} * 2)`,
+
 
     "&:hover": {
       boxShadow: theme.shadows.md,
@@ -36,7 +42,7 @@ export function Policy1({ quote, BtnClick }) {
 
 
       <Text size="l" weight={500} mt="md">
-        <h2>POLICY A</h2>
+        <h2>Policy A</h2>
       </Text>
       <Text size="sm" mt="sm" color="dimmed">
         <p>
@@ -47,15 +53,9 @@ export function Policy1({ quote, BtnClick }) {
           <li>Liability coverage for bodily injury and property damage</li>
           <li>Collision coverage for damages to your own vehicle</li>
           <li>Comprehensive coverage for non-collision damages like theft or natural disasters</li>
-          <br />
+        
         </ul>
-        <p>In addition, you can choose to add on additional coverage options for an extra cost, such as:</p>
-        <ul>
-          <li>Roadside assistance</li>
-          <li>Rental car reimbursement</li>
-          <li>Increased liability limits</li>
-        </ul>
-        <br />
+
     
         <p>
         <b>  
@@ -72,3 +72,16 @@ export function Policy1({ quote, BtnClick }) {
     </Paper>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

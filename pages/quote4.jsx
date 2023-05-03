@@ -51,16 +51,13 @@ export default function Page() {
 
         <Paper w={"100%"} shadow="lg" radius="xs" p="lg">
         <Stack spacing={"xs"}>
-        <QuoteHeader name="List of Policies" step={4} />
+        <QuoteHeader name="Generated Policy & Add-ons" step={4} />
       
           <br />
           <Policy1 quote={quote} BtnClick={BtnClick} />
           <br />
+          <Policy2 />
 
-          <Policy2 quote={quote} BtnClick={BtnClick} />
-          <br />
-
-          <Policy3 quote={quote} BtnClick={BtnClick} />
           </Stack>
         </Paper>
 
