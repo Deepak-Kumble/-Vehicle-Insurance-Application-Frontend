@@ -24,14 +24,21 @@ import { QuoteHeader } from "../components/QuoteHeader";
 import { lol } from "../components/data/UserQuoteStateSimulator";
 
 export default function Page() {
+  let initVals = {
+    todl: "",
+    drive: 0,
+    trafs: 0,
+    claims: 0,
+  };
   const form = useForm({
-    initialValues: {
-      todl: "",
-      drive: 0,
-      trafs: 0,
-      claims: 0,
-    },
+    initialValues: initVals,
   });
+
+  useEffect(() => {
+    form.setValues(
+      GetUserQuoteState(JSON.parse(localStorage.getItem("quote"))?.["user_id"], "quote2") ?? initVals
+    );
+  }, []);
 
   return (
     <>

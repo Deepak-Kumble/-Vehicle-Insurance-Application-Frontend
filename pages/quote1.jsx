@@ -24,19 +24,29 @@ import { FooterLinks } from "../components/FooterLinks";
 import { Banner } from "../components/Banner";
 import { QuoteHeader } from "../components/QuoteHeader";
 import { NavAccount } from "../components/NavAccount";
-import { lol } from "../components/data/UserQuoteStateSimulator";
+import { GetUserQuoteState, lol } from "../components/data/UserQuoteStateSimulator";
+import { useLocalStorage } from "@mantine/hooks";
+import { useEffect } from "react";
 
 export default function Page() {
+  // const [localquoteData] = useLocalStorage({ key: "quote", defaultValue: null });
+  let initVals = {
+    regis: "",
+    yor: "2023",
+    make: "",
+    model: "",
+    fuel: "",
+    gearbox: "",
+  };
   const form = useForm({
-    initialValues: {
-      regis: "",
-      yor: "2023",
-      make: "",
-      model: "",
-      fuel: "",
-      gearbox: "",
-    },
+    initialValues: initVals,
   });
+
+  useEffect(() => {
+    form.setValues(
+      GetUserQuoteState(JSON.parse(localStorage.getItem("quote"))?.["user_id"], "quote1") ?? initVals
+    );
+  }, []);
 
   return (
     <>

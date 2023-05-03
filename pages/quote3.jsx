@@ -26,12 +26,20 @@ import { NavAccount } from "../components/NavAccount";
 import { lol } from "../components/data/UserQuoteStateSimulator";
 
 export default function Page() {
+  let initVals = {
+    renewal_type: "",
+    cover_type: new Date(),
+  };
   const form = useForm({
-    initialValues: {
-      renewal_type: "",
-      cover_type: new Date(),
-    },
+    initialValues: initVals,
   });
+
+  useEffect(() => {
+    form.setValues(
+      GetUserQuoteState(JSON.parse(localStorage.getItem("quote"))?.["user_id"], "quote3") ?? initVals
+    );
+  }, []);
+
   return (
     <>
       <NavAccount />

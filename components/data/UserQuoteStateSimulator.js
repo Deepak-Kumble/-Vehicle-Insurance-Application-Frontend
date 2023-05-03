@@ -37,6 +37,16 @@ export function lol(user_id, quote_num, quote_data, counter_val) {
   localStorage.setItem("quote_state_store", JSON.stringify(Object.fromEntries(x.entries())));
 }
 
+export function GetUserQuoteState(user_id, quote_num) {
+  let x = GetQuoteStateStore();
+  let user_data = x.get(user_id.toString());
+
+  if (user_data) {
+    return user_data[quote_num.toString()];
+  }
+  else null;
+}
+
 export function DeleteUserState(user_id) {
   let x = GetQuoteStateStore();
   x.delete(user_id.toString());
