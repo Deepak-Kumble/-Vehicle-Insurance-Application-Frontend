@@ -20,6 +20,7 @@ import { FooterLinks } from "../components/FooterLinks";
 import { Banner } from "../components/Banner";
 import { NavAccount } from "../components/NavAccount";
 import { QuoteHeader } from "../components/QuoteHeader";
+import { useLocalStorage } from "@mantine/hooks";
 
 // TODO
 export default function Page() {
@@ -27,6 +28,14 @@ export default function Page() {
   // const [tax, setTax] = useState(0);
   // const [addOnsTotal, setAddOnsTotal] = useState(0);
   // const [grandTotal, setGrandTotal] = useState(0);
+  const [quoteAmont] = useLocalStorage({
+    key: "quote_value",
+    defaultValue: -1,
+  });
+  const [addOnIndexes] = useLocalStorage({
+    key: "quote_addons",
+    defaultValue: null,
+  });
 
   const form = useForm({
     initialValues: {
@@ -37,6 +46,8 @@ export default function Page() {
     },
   });
 
+  let quote = parseFloat(quoteAmont);
+  let addOnsTotal = ;
   const tax = 50; // Assuming tax is 10% of the quote
   const grandTotal = quote + tax + addOnsTotal;
 

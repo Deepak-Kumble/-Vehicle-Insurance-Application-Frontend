@@ -1,5 +1,6 @@
 import { createStyles, Paper, Text, ThemeIcon, rem, Button } from "@mantine/core";
 import { IconColorSwatch, IconInfoSquareRoundedFilled } from "@tabler/icons-react";
+import Link from "next/link";
 
 const useStyles = createStyles((theme) => ({
   cardContainer: {
@@ -27,12 +28,11 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function Policy1({ quote, BtnClick }) {
+export function Policy1({ quote }) {
   const { classes } = useStyles();
+
   return (
     <Paper withBorder radius="md" className={classes.card}>
-      <></>
-
       <Text size="l" weight={500} mt="md">
         <h2>Policy A</h2>
       </Text>
@@ -52,10 +52,9 @@ export function Policy1({ quote, BtnClick }) {
             <Text size="lg">Generated Quote amount: &pound; {parseFloat(quote)}</Text>
           </b>
         </p>
-        <Button radius="xl" onClick={() => BtnClick(parseFloat(quote))}>
-          Buy Now
-        </Button>
-        <></>
+        <Link href="/quote5">
+          <Button radius="xl">Buy Now</Button>
+        </Link>
       </Text>
     </Paper>
   );

@@ -30,11 +30,6 @@ export default function Page() {
     defaultValue: "ERROR",
   });
 
-  const BtnClick = (val) => {
-    localStorage.setItem("quote_select_value", val);
-    Router.push("/quote5?q=" + val);
-  };
-
   return (
     <>
       <NavAccount />
@@ -55,7 +50,7 @@ export default function Page() {
           <QuoteHeader name="Generated Policy & Add-ons" step={4} />
 
           <br />
-          <Policy1 quote={quote} BtnClick={BtnClick} />
+          <Policy1 quote={quote} />
           <br />
           <Policy2 />
         </Stack>

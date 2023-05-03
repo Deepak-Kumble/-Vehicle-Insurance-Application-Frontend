@@ -1,7 +1,7 @@
 import { createStyles, Paper, Text, ThemeIcon, rem, Button, Flex, Checkbox } from "@mantine/core";
 import { IconColorSwatch, IconTarget, IconMinus, IconPlus } from "@tabler/icons-react";
 import { ADDONS } from "./data/addon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -57,10 +57,15 @@ export function Policy2({ quote, BtnClick }) {
                   onClick={(e) => {
                     console.log(addOnSelected);
                     if (e.currentTarget.checked) {
-                      setAddOn((prev) => prev.add(index));
+                      setAddOn((prev) => {
+                        prev.add(index);
+                        localStorage.setItem("quote_addons", [...prev]);
+                        return prev;
+                      });
                     } else {
                       setAddOn((prev) => {
                         prev.delete(index);
+                        localStorage.setItem("quote_addons", [...prev]);
                         return prev;
                       });
                     }
