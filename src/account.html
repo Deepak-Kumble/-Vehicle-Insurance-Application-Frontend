@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="title">Auto Armor | Account</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <nav>
+		<a href="index.html" class="logo"><img src="images/logo1.png">AUTO ARMOR</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="quote.html">Get Quote</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="account.html">Account</a></li>
+      
+    </ul>
+    </nav>
+    
+    <header>
+      <div class="bg-image"></div>
+      <div class="header-content">
+        <h1>Get an Instant Quote for Your Vehicle Insurance</h1>
+        <p><b>Choose the best insurance policy for your vehicle. We offer fast and easy quotes, competitive pricing, and flexible coverage options.</b></p>
+        <a href="quote.html"><button class="quote-button">Get your quote now</button></a>
+      </div>
+    </header>
+
+
+    <div class="account-page">
+        <div class="container">
+            <div class="row">
+                  <div class="col-2">
+                        <div class="form-container">
+                            <div class="form-btn">
+                                <span onclick="login()">Login</span>
+                                <span onclick="register()" >Register</span>
+                                <hr id="Indicator">
+                            </div>
+
+                            
+                            <form id="RegForm"  onsubmit="return validateregister()" action="/register"  method="POST" th:object="${registerRequest}">
+                                <input type="text" id="uname1" name="login" placeholder="Username">
+                                <input type="email" id="email1" name="email" placeholder="Email">
+                                <input type="password" id="pass1" name="password" placeholder="Password">
+                                <button type="submit" class="quote-button">Register</button>
+                               
+                            </form>
+                            <form id="LoginForm" onsubmit="return validatelogin()" action="/login" method="POST" th:object="${loginRequest}">
+                                <input type="text" id="uname" name="login" placeholder="Username">
+                                <input type="password" id="pass" name="password" placeholder="Password">
+                                <button type="submit"  class="quote-button">Login</button>
+
+                            </form>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+
+    
+    
+    <footer>
+      <p>&copy; 2023 Auto Armor. All rights reserved.</p>
+    </footer>
+    
+        <!-----js for toggle form---->
+		<script>
+			var LoginForm= document.getElementById("LoginForm");
+			var RegForm= document.getElementById("RegForm");
+			var Indicator= document.getElementById("Indicator");
+			   
+				function register()
+				{
+					RegForm.style.transform="translateX(0px)";       
+					LoginForm.style.transform="translateX(0px)";
+					Indicator.style.transform="translateX(100px)";
+				}
+				
+				function login()
+				{
+					RegForm.style.transform="translateX(300px)"; 
+					LoginForm.style.transform="translateX(300px)";
+					Indicator.style.transform="translateX(0px)";
+				}
+				
+				// Register form alert
+    const registerForm = document.querySelector('#RegForm');
+    registerForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        fetch('/register', {
+            method: 'POST',
+            body: new FormData(registerForm)
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Registration successful!');
+                window.location.href="index.html";
+            } else {
+                alert('An error occurred while registering.');
+            }
+        })
+        .catch(error => {
+            alert('An error occurred while registering.');
+            console.error(error);
+        });
+    });
+				
+				 // Login form alert
+    const loginForm = document.querySelector('#LoginForm');
+    loginForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        fetch('/login', {
+            method: 'POST',
+            body: new FormData(loginForm)
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Login successful!');
+                window.location.href="index.html";
+            } else {
+                alert('Invalid credentials!');
+            }
+        })
+        .catch(error => {
+            alert('An error occurred while logging in.');
+            console.error(error);
+        });
+    });
+			</script>
+  </body>
+</html>

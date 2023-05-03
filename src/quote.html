@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title class="title">Auto Armor | Get Quote (Step 1)</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="logo"><img src="images/logo1.png">AUTO ARMOR</a>
+      <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="quote.html">Get Quote</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="account.html">Account</a></li>
+      </ul>
+    </nav>
+    
+    <header>
+        <div class="bg-image"></div>
+        <div class="header-content">
+          <h1>Get an Instant Quote for Your Vehicle Insurance</h1>
+          <p><b>Choose the best insurance policy for your vehicle. We offer fast and easy quotes, competitive pricing, and flexible coverage options.</b></p>
+        </div>
+     </header>
+
+    <div class="container">
+        <h2><u>USER DETAILS</u> </h2>
+        <form method="post" action="/user" th:object="${userRequest}" >
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" name="firstName" required>
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" name="lastName" required>
+          <label for="dob">Date of Birth:</label>
+          <input type="date" id="dob" name="dob" required>
+          <label for="email">Email Address:</label>
+          <input type="email" id="email" name="email" required>
+          <label for="num">Phone Number:</label>
+          <input type="tel" id="num" name="num" required>
+          <label for="addr">Address:</label>
+          <textarea id="address" name="addr" rows="5" required></textarea>
+          <button type="submit" class="quote-button">Save</button>
+        </form>
+      </div> 
+        
+      <!-- <a href="quote1.html">
+         <button type="button" class="next-button">Next  <i class="fa fa-arrow-right"></i></button></a> -->
+
+        
+      
+    <footer>
+      <p>&copy; 2023 Auto Armor. All rights reserved.</p>
+    </footer>
+    <style>
+      .next-button {
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin: 10px;
+      }
+
+.next-button:hover {
+background-color: #083a09;
+}
+
+
+
+</style>
+<script>
+  const form = document.querySelector('form');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+  
+    fetch('/user', {
+      method: 'POST',
+      body: new FormData(form)
+    })
+    .then(response => {
+      if (response.ok) {
+      
+        alert('User details saved successfully!');
+        window.location.href="quote1.html";
+      } else {
+        
+        alert('An error occurred while saving user details.');
+      }
+    })
+    .catch(error => {
+     
+      alert('An error occurred while saving user details.');
+      console.error(error);
+    });
+  });
+</script>
+</body>
+</html>

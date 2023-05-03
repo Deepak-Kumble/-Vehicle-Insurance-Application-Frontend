@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="title">Auto Armor | Get Quote (Step 5)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="logo"><img src="images/logo1.png">AUTO ARMOR</a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      <li><a href="quote.html">Get Quote</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="account.html">Account</a></li>
+      </ul>
+    </nav>
+    <header>
+       <div class="bg-image"></div>
+<div class="header-content">
+  <h1>Get an Instant Quote for Your Vehicle Insurance</h1>
+  <p><b>Choose the best insurance policy for your vehicle. We offer fast and easy quotes, competitive pricing, and flexible coverage options.</b></p>
+</div>
+</header>
+<div class="container">
+  <h2>List of Policies</h2>
+  <br>
+  <div class="policy-box">
+    <h2>POLICY A</h2><br>
+    <p>Our Policy A is a great choice for those who are looking for basic coverage at an affordable price. This policy offers the following:</p>
+    <ul>
+      <li>Liability coverage for bodily injury and property damage</li>
+      <li>Collision coverage for damages to your own vehicle</li>
+      <li>Comprehensive coverage for non-collision damages like theft or natural disasters</li><br>
+    </ul>
+    <p>In addition, you can choose to add on additional coverage options for an extra cost, such as:</p>
+    <ul>
+      <li>Roadside assistance</li>
+      <li>Rental car reimbursement</li>
+      <li>Increased liability limits</li>
+    </ul><br>
+    <p><b><u>Generated quote amount:</u> </b></p>
+    <div id="quote"></div>
+
+    <a href="quote5.html"><button class="quote-button">Buy Now</button></a>
+  </div>
+  
+  
+  <div class="policy-box">
+   <h2>POLICY B</h2><br>
+    <p>Our Policy B includes more coverage and add-ons compared to Policy A, making it a great choice for those who want extra protection for their vehicle. This policy offers everything that Policy A offers, plus:</p>
+    <ul>
+      <li>Uninsured/underinsured motorist coverage</li>
+      <li>Medical payments coverage</li>
+      <li>Pet injury coverage</li>
+    </ul><br>
+    <p>You can also choose to add on any of the following coverage options for an extra cost:</p>
+    <ul>
+      <li>Accident forgiveness</li>
+      <li>Glass coverage</li>
+      <li>Custom parts and equipment coverage</li>
+    </ul><br>
+    <p><b><u>Generated quote amount:</u>  <span id="total-quote-b"></b></span></p>
+    <a href="quote5.html"><button class="quote-button">Buy Now</button></a>
+  </div>
+  
+  
+   <div class="policy-box">
+   <h2>POLICY C</h2><br>
+    <p>Our Policy B includes more coverage and add-ons compared to Policy A, making it a great choice for those who want extra protection for their vehicle. This policy offers everything that Policy A offers, plus:</p>
+    <ul>
+      <li>Uninsured/underinsured motorist coverage</li>
+      <li>Medical payments coverage</li>
+      <li>Pet injury coverage</li>
+    </ul><br>
+    <p>You can also choose to add on any of the following coverage options for an extra cost:</p>
+    <ul>
+      <li>Accident forgiveness</li>
+      <li>Glass coverage</li>
+      <li>Custom parts and equipment coverage</li>
+    </ul><br>
+    <p><b><u>Generated quote amount:</u>  <span id="total-quote-b"></b></span></p>
+    <div id="quote"></div>
+    <a href="quote5.html"><button class="quote-button">Buy Now</button></a>
+  </div>
+</div>
+  
+  <footer>
+        <p>&copy; 2023 Auto Armor. All rights reserved.</p>
+      </footer>
+
+
+</body>
+
+      <!--<a href="quote3.html"><button type="button" class="back-button"> <i class="fa fa-arrow-left"></i> Back</button></a>
+      <a href="quote5.html"><button type="button" class="next-button">Next  <i class="fa fa-arrow-right"></i> </button></a>-->
+
+   
+<style>
+	.qu
+	.policy-box {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  text-decoration: none;
+  width:auto;
+
+}
+.policy-box h2 {
+  text-decoration: none;
+}
+
+h2 {
+  text-align: center;
+  text-transform: uppercase;
+  
+}
+
+.policy-box {
+  display:inherit;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #000;
+}
+
+.next-button {
+       background-color: #4CAF50;
+       color: #fff;
+       border: none;
+       padding: 10px 20px;
+       border-radius: 5px;
+       font-size: 16px;
+       cursor: pointer;
+       transition: background-color 0.3s ease;
+       margin: 10px;
+     }
+
+.next-button:hover {
+background-color: #083a09;
+}
+
+.back-button {
+       background-color: #4CAF50;
+       color: #fff;
+       border: none;
+       padding: 10px 20px;
+       border-radius: 5px;
+       font-size: 16px;
+       cursor: pointer;
+       transition: background-color 0.3s ease;
+       margin: 10px;
+     }
+
+.back-button:hover {
+background-color: #083a09;
+}
+</style>
+<script>
+const quote = localStorage.getItem('quote');
+document.getElementById('quote').textContent = quote;
+	</script>
+</body>
+</html>
+  

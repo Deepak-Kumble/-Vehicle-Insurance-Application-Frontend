@@ -1,0 +1,3 @@
+# Insurance_portal
+
+To create a motor insurance application using web-development technologies, java microservices and DevOps tools with basic functionalities such as Account management, Transactions processing, Customer relationship management (CRM), Insurance premium upgradation etc. Common business problem for a motor insurance website is customer retention. With so many options available, customers can easily switch to a different insurance provider if they are not satisfied with the service provided by their current provider. This can result in lost revenue for the insurance company and reduced market share.

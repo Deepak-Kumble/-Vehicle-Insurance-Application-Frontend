@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title class="title">Auto Armor | Get Quote (Step 2)</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="logo"><img src="images/logo1.png">AUTO ARMOR</a>
+      <ul>
+         <li><a href="index.html">Home</a></li>
+      <li><a href="quote.html">Get Quote</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="account.html">Account</a></li>
+      </ul>
+    </nav>
+    
+      <header>
+        <div class="bg-image"></div>
+        <div class="header-content">
+          <h1>Get an Instant Quote for Your Vehicle Insurance</h1>
+          <p><b>Choose the best insurance policy for your vehicle. We offer fast and easy quotes, competitive pricing, and flexible coverage options.</b></p>
+        </div>
+     </header>
+
+      <div class="container">
+        <h2><u>VEHICLE DETAILS</u></h2>
+        <form method="post" action="/vehicle" th:object="${vehicleRequest}" id="vehicle-form">
+
+        <div class="form-group">
+          <label for="regis">Registration Number</label>
+          <input type="text" id="regis" name="regis">
+          
+        </div>
+        <div class="form-group">
+          <label for="yor">Year of Registration</label>
+          <select id="yor" name="yor">
+            <option value="" selected disabled>Select Year of Registration</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+            <option value="2013">2013</option>
+            <option value="2012">2012</option>
+            <option value="2012">2011</option>
+            <option value="2010">2010</option>
+            <option value="2009">2009</option>
+            <option value="2008">2008</option>
+            <option value="2007">2007</option>
+            <option value="2006">2006</option>
+            <option value="2005">2005</option>
+            <option value="2004">2004</option>
+            <option value="2003">2003</option>
+            <option value="2002">2002</option>
+            <option value="2001">2001</option>
+            <option value="2000">2000</option>
+          </select>
+        </div>
+      
+        <div class="form-group">
+            <label for="make">Vehicle Maker:</label>
+            <select id="make" name="make">
+              <option value="" selected disabled>Select Vehicle Maker</option>
+                <option value="AC">AC</option>
+                <option value="Aixam">Aixam</option>
+                <option value="Alfa Romeo">Alfa Romeo</option>
+                <option value="ARO">ARO</option>
+                <option value="Aston Martin">Aston Martin</option>
+                <option value="Audi">Audi</option>
+                <option value="Austin">Austin</option>
+                <option value="Bentley">Bentley</option>
+                <option value="BMW">BMW</option>
+                <option value="Bond">Bond</option>
+                <option value="Bristol">Bristol</option>
+                <option value="Buick">Buick</option>
+                <option value="Cadillac">Cadillac</option>
+                <option value="Chevrolet">Chevrolet</option>
+                <option value="Chrysler">Chrysler</option>
+                <option value="Citreon">Citreon</option>
+                <option value="Daewoo">Daewoo</option>
+                <option value="Daihatsu">Daihatsu</option>
+                <option value="Dallas">Dallas</option>
+                <option value="Era">Era</option>
+                <option value="Ferrari">Ferrari</option>
+                <option value="Fiat">Fiat</option>
+                <option value="Ford">Ford</option>
+                <option value="Holden">Holden</option>
+                <option value="Honda">Honda</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="Isuzu">Isuzu</option>
+                <option value="Jaguar">Jaguar</option>
+                <option value="Jeep">Jeep</option>
+                <option value="Khaleej">Khaleej</option>
+                <option value="KIA">KIA</option>
+                <option value="Lamborghini">Lamborghini</option>
+                <option value="Landrover">Landrover</option>
+                <option value="Lexus">Lexus</option>
+                <option value="Ligier">Ligier</option>
+                <option value="Lincoln">Lincoln</option>
+                <option value="Lotus">Lotus</option>
+                <option value="Mahindra">Mahindra</option>
+                <option value="Marcos">Marcos</option>
+                <option value="Maserati">Maserati</option>
+                <option value="Maybach">Maybach</option>
+                <option value="Mazda">Mazda</option>
+                <option value="Mercedez-Benz">Mercedez-Benz</option>
+                <option value="Mercury">Mercury</option>
+                <option value="MG">MG</option>
+                <option value="Microcar">Microcar</option>
+                <option value="Mini">Mini</option>
+                <option value="Mitsubishi">Mitsubishi</option>
+                <option value="Morgan">Morgan</option>
+                <option value="Nissan">Nissan</option>
+                <option value="Oka">Oka</option>
+                <option value="Opel">Opel</option>
+                <option value="Panther">Panther</option>
+                <option value="Perodua">Perodua</option>
+                <option value="Peugeot">Peugeot</option>
+                <option value="Porsche">Porsche</option>
+                <option value="Renault">Renault</option>
+                <option value="Reva">Reva</option>
+                <option value="Rolls-Royce">Rolls-Royce</option>
+                <option value="Rover">Rover</option>
+                <option value="Saab">Saab</option>
+                <option value="Seat">Seat</option>
+                <option value="Skoda">Skoda</option>
+                <option value="Smart">Smart</option>
+                <option value="Ssangyong">Ssangyong</option>
+                <option value="Subaru">Subaru</option>
+                <option value="Suzuki">Suzuki</option>
+                <option value="Tata">Tata</option>
+                <option value="Toyota">Toyota</option>
+                <option value="TVR">TVR</option>
+                <option value="Vauxhall">Vauxhall</option>
+                <option value="Vexel">Vexel</option>
+                <option value="Volkswagen">Volkswagen</option>
+                <option value="Volvo">Volvo</option>
+            </select>
+      <label for="model">Vehicle Model:</label>
+            <select id="model" name="model">
+              <option value="">Select a Vehicle Model</option>
+
+            </select>
+        </div>
+
+
+
+        <div class="form-group">
+          <label for="fuel">Fuel Type</label>
+          <select id="fuel" name="fuel">
+            <option value="">Select a Fuel Type</option>
+            <option value="Petrol">Petrol</option>
+            <option value="Diesel">Diesel</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="gearbox">Gearbox Type</label>
+          <select id="gearbox" name="gearbox">
+            <option value="">Select a Gearbox Type</option>
+            <option value="Automatic">Automatic</option>
+            <option value="Manual">Manual</option>
+          </select>
+        </div>
+        <button type="submit" class="quote-button-1" onclick="submitForm1()">Save</button>
+      </div>
+      </form>
+      
+</form>
+
+      <!--<div class="button-container">
+      <a href="quote.html"><button type="button" class="back-button"> <i class="fa fa-arrow-left"></i> Back</button></a>
+      <a href="quote2.html"><button type="button" class="next-button">Next  <i class="fa fa-arrow-right"></i> </button></a>-->
+      
+      
+    <footer>
+      <p>&copy; 2023 Auto Armor. All rights reserved.</p>
+    </footer>
+
+<script>
+const makeDropdown = document.getElementById('make');
+const modelDropdown = document.getElementById('model');
+const models = {
+'AC': ['ACE', 'COBRA'],
+'Aixam': ['700','MEGA'],
+'Alfa Romeo': ['147','159','166','BRERA','SPIDER'],
+'ARO': ['240'],
+'Aston Martin': ['DB11'],
+'Audi': ['A1'],
+'Austin': ['GIPSY'],
+'Bentley': ['ARANGE'],
+'BMW': ['114I'],
+'Bond': ['BUG'],
+'Bristol': ['BLENHEIM'],
+'Buick': ['CENTURY'],
+'Cadillac': ['ALLANTE'],
+'Chevrolet': ['AVEO'],
+'Chrysler': ['300C'],
+'Citreon': ['BERLINGO'],
+'Daewoo': ['LACETTI'],
+'Daihatsu': ['APPLAUSE'],
+'Dallas': ['JEEP'],
+'Era': ['MINI'],
+'Ferrari': ['430'],
+'Fiat': ['124'],
+'Ford': ['C-MAX'],
+'Holden': ['GTS'],
+'Honda': ['ACCORD'],
+'Hyundai': ['ACCENT'],
+'Isuzu': ['TROOPER'],
+'Jaguar': ['E-PACE'],
+'Jeep': ['CJ7'],
+'Khaleej': ['SCARAB'],
+'KIA': ['CARENS'],
+'Lamborghini': ['DIABLO'],
+'Landrover': ['DEFENDER'],
+'Lexus': ['CT'],
+'Ligier': ['AMBRA'],
+'Lincoln': ['CONTINENTAL'],
+'Lotus': ['2-ELEVEN'],
+'Mahindra': ['CJ'],
+'Marcos': ['MANTARAY'],
+'Maserati': ['CAMBIOCORSA'],
+'Maybach': ['57'],
+'Mazda': ['CX-3'],
+'Mercedez-Benz': ['A160'],
+'Mercury': ['GRAND'],
+'MG': ['GS'],
+'Microcar': ['M-GO'],
+'Mini': ['CHALLENGE'],
+'Mitsubishi': ['3000'],
+'Morgan': ['AERO'],
+'Nissan': ['200'],
+'Oka': ['DANIRA'],
+'Opel': ['ASTRA'],
+'Panther': ['KALLISTA'],
+'Perodua': ['KELISA'],
+'Peugeot': ['1007'],
+'Porsche': ['BOXSTER'],
+'Portaro': ['PAMPAS'],
+'Proton': ['GEN-2'],
+'Reliant': ['REGAL'],
+'Renault': ['19'],
+'Reva': ['G-WIZ'],
+'Saab': ['9000'],
+'Seat': ['ALHAMBRA'],
+'Skoda': ['CITIGO'],
+'Smart': ['EQ'],
+'Ssangyong': ['KORANDO'],
+'Subaru': ['BRZ'],
+'Suzuki': ['ALTO'],
+'Tata': ['SAFARI'],
+'Toyota': ['ALTEZZA'],
+'TVR': ['CERBERA'],
+'Vauxhall': ['ADAM'],
+'Vexel': ['QUOVIS'],
+'Volkswagen': ['ARTEON'],
+'Volvo': ['360'],
+};
+
+
+makeDropdown.addEventListener('change', () => {
+  const selectedMake = makeDropdown.value;
+  modelDropdown.innerHTML = '<option value="">Select a Vehicle Model</option>';
+  if (selectedMake) {
+    models[selectedMake].forEach((model) => {
+      const option = document.createElement('option');
+      option.value = model;
+      option.textContent = model;
+      modelDropdown.appendChild(option);
+    });
+  }
+});
+    
+    </script>
+
+    <style>
+      #make {
+  margin-bottom: 20px;
+}
+.quote-button-1{
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+  display: block;
+  margin: 0 auto;
+ }
+
+ 
+.quote-button-1:hover {
+  background-color: green;
+}
+
+.quote-button-2{
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+ }
+
+ 
+.quote-button-2:hover {
+  background-color: green;
+}
+
+ .next-button {
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin: 10px;
+      }
+      
+
+.next-button:hover {
+background-color: #083a09;
+}
+
+.back-button {
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin: 10px;
+      }
+
+.back-button:hover {
+background-color: #083a09;
+}
+    </style>
+          <script>
+	
+  const form = document.querySelector('form');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    fetch('/vehicle', {
+      method: 'POST',
+      body: new FormData(form)
+    })
+    .then(response => {
+      if (response.ok) {
+		  alert('Vehicle details saved successfully!');
+        window.location.href="quote2.html";
+      } else {
+
+        alert('An error occurred while saving vehicle details.');
+      }
+    })
+    .catch(error => {
+
+      alert('An error occurred while saving vehicle details.');
+      console.error(error);
+    });
+  });
+  
+function submitForm1() {
+   var formData = new FormData(document.getElementById("vehicle-form"));
+   //var xhr = new XMLHttpRequest();
+   //xhr.open("POST", "/generatequote");
+   //xhr.send(formData);
+   let x={}
+   for(const key of formData.keys())
+   {
+	x[key]=formData.get(key) 
+   }
+   console.log(x);
+   localStorage.setItem("quote",JSON.stringify(x))
+   /*fetch('/generatequote',{
+	   method:'POST',
+	   headers:{},
+	   body: formData.*/
+   }
+   
+
+
+</script>
+  </body>
+</html>
