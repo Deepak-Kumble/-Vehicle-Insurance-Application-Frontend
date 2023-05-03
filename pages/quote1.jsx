@@ -91,6 +91,7 @@ export default function Page() {
                         ...v,
                         ...quoteData,
                       };
+                      localStorage.setItem("quote", JSON.stringify(x));
                       Router.push("/quote2");
                     } else {
                       alert("An error occurred while saving vehicle details.");

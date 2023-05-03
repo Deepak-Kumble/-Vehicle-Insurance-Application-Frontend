@@ -2,7 +2,7 @@ import { createStyles, Paper, Text, ThemeIcon, rem, Button } from "@mantine/core
 import { IconColorSwatch, IconInfoSquareRoundedFilled } from "@tabler/icons-react";
 
 const useStyles = createStyles((theme) => ({
-   cardContainer: {
+  cardContainer: {
     display: "flex",
     gap: theme.spacing.xl,
     overflowX: "auto",
@@ -14,12 +14,6 @@ const useStyles = createStyles((theme) => ({
     transition: "transform 150ms ease, box-shadow 100ms ease",
     padding: theme.spacing.xl,
     paddingLeft: `calc(${theme.spacing.xl} * 2)`,
-
-
-    "&:hover": {
-      boxShadow: theme.shadows.md,
-      transform: "scale(1.02)",
-    },
 
     "&::before": {
       content: '""',
@@ -37,9 +31,7 @@ export function Policy1({ quote, BtnClick }) {
   const { classes } = useStyles();
   return (
     <Paper withBorder radius="md" className={classes.card}>
-    
-        <></>
-
+      <></>
 
       <Text size="l" weight={500} mt="md">
         <h2>Policy A</h2>
@@ -53,16 +45,12 @@ export function Policy1({ quote, BtnClick }) {
           <li>Liability coverage for bodily injury and property damage</li>
           <li>Collision coverage for damages to your own vehicle</li>
           <li>Comprehensive coverage for non-collision damages like theft or natural disasters</li>
-        
         </ul>
 
-    
         <p>
-        <b>  
-        <Text size="lg">
-        Generated Quote amount: &pound; {parseFloat(quote)}
-        </Text>
-        </b>
+          <b>
+            <Text size="lg">Generated Quote amount: &pound; {parseFloat(quote)}</Text>
+          </b>
         </p>
         <Button radius="xl" onClick={() => BtnClick(parseFloat(quote))}>
           Buy Now
@@ -72,16 +60,3 @@ export function Policy1({ quote, BtnClick }) {
     </Paper>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

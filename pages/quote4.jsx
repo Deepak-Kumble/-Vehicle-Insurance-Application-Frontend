@@ -1,4 +1,15 @@
-import { Button, Stack, Center, Navbar, NumberInput, Paper, Textarea, TextInput, Title, Stepper} from "@mantine/core";
+import {
+  Button,
+  Stack,
+  Center,
+  Navbar,
+  NumberInput,
+  Paper,
+  Textarea,
+  TextInput,
+  Title,
+  Stepper,
+} from "@mantine/core";
 import { useLocalStorage } from "@mantine/hooks";
 import Router from "next/router";
 import { Progress } from "@mantine/core";
@@ -27,30 +38,28 @@ export default function Page() {
   return (
     <>
       <NavAccount />
-       <br/>
-       <Banner/>
-       <br/>
+      <br />
+      <Banner />
+      <br />
 
-       <Stepper active={3} onStepClick={() => {}} orientation="horizontal">
+      <Stepper active={3} onStepClick={() => {}} orientation="horizontal">
         <Stepper.Step label="Step 1" description="Vehicle Details" />
         <Stepper.Step label="Step 2" description="Driving Details" />
         <Stepper.Step label="Step 3" description="Insurance Details" />
         <Stepper.Step label="Step 4" description="Selection of Policy and Add-ons" />
         <Stepper.Step label="Step 5" description="Payment" />
-      
       </Stepper>
 
-        <Paper w={"100%"} shadow="lg" radius="xs" p="lg">
+      <Paper w={"100%"} shadow="lg" radius="xs" p="lg">
         <Stack spacing={"xs"}>
-        <QuoteHeader name="Generated Policy & Add-ons" step={4} />
+          <QuoteHeader name="Generated Policy & Add-ons" step={4} />
 
-            <br />
-            <Policy1 quote={quote} BtnClick={BtnClick} />
-            <br />
+          <br />
+          <Policy1 quote={quote} BtnClick={BtnClick} />
+          <br />
           <Policy2 />
-
-          </Stack>
-        </Paper>
+        </Stack>
+      </Paper>
 
       <FooterLinks />
     </>
