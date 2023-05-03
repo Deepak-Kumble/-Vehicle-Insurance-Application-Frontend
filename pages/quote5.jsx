@@ -75,7 +75,7 @@ export default function Page() {
       .then((response) => {
         if (response.ok) {
           alert("Payment Successful!");
-          // localStorage.removeItem("quote");
+          localStorage.removeItem("quote");
           Router.push("/");
         } else {
           alert("An error occurred while processing the payment.");
@@ -107,11 +107,44 @@ export default function Page() {
         <Grid>
           <Grid.Col span={6}>
             <Paper shadow="lg" radius="xs" p="lg">
-              {/* <Group position="apart">
-                <Text>User Name:</Text>
+                <Group position="apart">
+                <Text>Your Username:</Text>
                 <Text>{quoteVals?.user_name}</Text>
-              </Group> */}
-              {quoteVals
+              </Group> 
+              <Group position="apart">
+                <Text>The registration number of your vehicle:</Text>
+                <Text>{quoteVals?.regis}</Text>
+              </Group>
+              <Group position="apart">
+                <Text>Vehicle Make and Model :</Text>
+                <Text>{quoteVals?.make} {quoteVals?.model}</Text>
+              </Group>
+              <Group position="apart">
+                <Text>Transmission and Fuel Type:</Text>
+                <Text>{quoteVals?.gearbox} {quoteVals?.fuel}</Text>
+              </Group>
+              <Group position="apart">
+                <Text>Type of Driving license:</Text>
+                <Text>{quoteVals?.todl}</Text>
+              </Group>
+              <Group position="apart">
+                <Text>Driving Experience:</Text>
+                <Text>{quoteVals?.drive}</Text>
+              </Group>
+              <Group position="apart">
+                <Text>Previous Traffics violations:</Text>
+                <Text>{quoteVals?.trafs}</Text>
+              </Group>
+              <Group position="apart">
+                <Text>Renewal Type:</Text>
+                <Text>{quoteVals?.renewal_type}</Text>
+              </Group>
+              <Group position="center">
+                    <Button type="submit" radius="xl">
+                      Modify
+                    </Button>
+              </Group>
+              {/*quoteVals
                 ? Object.keys(quoteVals)?.map((v) => {
                     return (
                       <Group position="apart">
@@ -132,7 +165,7 @@ export default function Page() {
                     <Text>£{x.price}</Text>
                   </Group>
                 );
-              })}
+              })*/}
             </Paper>
           </Grid.Col>
           <Grid.Col span={6}>
