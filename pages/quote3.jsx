@@ -63,10 +63,22 @@ export default function Page() {
 
   return (
     <>
-      <NavAccount />
+      <NavBar />
+      <br/>
+      <Banner/>
+      <br/>
+      <Stepper active={1} onStepClick={() => {}} orientation="horizontal" style={{ margin: '10px', padding: '10px' }}>
+        <Stepper.Step label="Step 1" description="Vehicle Details" />
+        <Stepper.Step label="Step 2" description="Driving Details" />
+        <Stepper.Step label="Step 3" description="Insurance Details" />
+        <Stepper.Step label="Step 4" description="Selection of Policy and Add-ons" />
+        <Stepper.Step label="Step 5" description="Payment" />
+      
+      </Stepper>
+      <br/>
       <Grid gutter="xl">
       <Col span={9}>
-        <Paper w={"100%"} h="100%" shadow="lg" radius="xs" p="lg">
+          <Paper w="100%" h="100%" shadow="lg" radius="xs" p="lg">
           <form
             onSubmit={form.onSubmit((v) => {
               let data = new FormData();

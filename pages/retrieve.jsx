@@ -1,4 +1,4 @@
-import { Button, Grid, Stack, Center, Paper, TextInput, Modal, Text } from "@mantine/core";
+import { Button, Grid, Stack, Center, Paper, TextInput, Modal, Text, Col, Tooltip} from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/form";
 import { useState } from "react";
@@ -8,6 +8,7 @@ import { API_URL } from "../constants";
 import { FooterLinks } from "../components/FooterLinks";
 import { Banner } from "../components/Banner";
 import { GetUserCurrentCounter } from "../components/data/UserQuoteStateSimulator";
+import Link from "next/link";
 
 export default function Page() {
   const form = useForm({
@@ -48,8 +49,8 @@ export default function Page() {
       <Banner />
 
       <Grid gutter="xl">
-        <Grid.Col span={9}>
-          <Paper shadow="lg" radius="xs" padding="lg">
+      <Col span={9}>
+        <Paper w="100%" h="100%" shadow="lg" radius="xs" p="lg">
             <form onSubmit={form.onSubmit(handleFormSubmit)}>
               <Stack spacing="xs" align="center">
                 <TextInput
@@ -68,8 +69,8 @@ export default function Page() {
 
                 <TextInput
                   type="text"
-                  label="username"
-                  placeholder="Enter your username"
+                  label="Username"
+                  placeholder="Enter your Username"
                   required
                   {...form.getInputProps("username")}
                 />
@@ -87,72 +88,57 @@ export default function Page() {
               </Stack>
             </form>
           </Paper>
-        </Grid.Col>
+        </Col>
 
-        <Grid.Col span={3}>
+        <Col span={3}>
           <Center>
-            <Paper shadow="lg" radius="xs" padding="lg">
-              <h2>Why choose us...</h2>
+            <Paper w="100%" shadow="lg" radius="xs" p="lg">
+              
+              
+              <div style={{ marginTop: '20px' }}></div> 
+              <h2>Our Offerings...</h2>
               <ul>
-                <li>
-                  <b>Competitive Rates:</b> Get the coverage you need at a price that fits your budget with
-                  our competitive rates.
-                </li>
-                <li>
-                  <b>Comprehensive Coverage:</b> Our policies provide complete protection against accidents,
-                  theft, vandalism, and natural disasters.
-                </li>
-                <li>
-                  <b>Online Policy Management:</b> Conveniently manage your policy online, from updating
-                  details to making payments, all from the comfort of your home.
-                </li>
-
-                <li>
-                  <b>Customer Support:</b> Our dedicated customer support team is available 24/7 to assist you
-                  with any queries or concerns you may have.
-                </li>
+              <li>Competitive Rates</li>
+              <li>Comprehensive Coverage</li>
+              <li>Online Policy Management</li>
+              <li>Defaqto 5 Star Rated</li>
               </ul>
-              <Button onClick={handleInfoClick} radius="xs">
-                More Info
-              </Button>
-            </Paper>
-          </Center>
-        </Grid.Col>
-      </Grid>
+              <div style={{ marginTop: '20px', textAlign: 'center' }}>
+              <img src="https://www.direct.aviva.co.uk/quote/Direct/Motor/Content/images/defaqto-car-logo-2023.png" alt="Defaqto Car Logo" style={{ maxWidth: '60%', maxHeight: '60%' }} />
+                <Tooltip label="More Information" position="bottom" withArrow>
+                  <span style={{ marginLeft: '5px', cursor: 'pointer' }} onClick={handleInfoClick}>
+                  <br/>
+                  ⓘ
+                </span>
+              </Tooltip>
+              {isModalOpen && (
+                <Modal
+                  opened={isModalOpen}
+                  onClose={handleCloseModal}
+                >
+                  <Text>
+                  <ul>
 
-      <Modal opened={isModalOpen} onClose={handleCloseModal} title="More Information" size="sm">
-        <Text>
-          <ul>
-            <li>
-              <b>Competitive Rates:</b> We offer competitive rates for vehicle insurance, ensuring that you
-              get the coverage you need at a price that fits your budget.
-            </li>
+<li><b>Competitive Rates:</b> We offer competitive rates for vehicle insurance, ensuring that you get the coverage you need at a price that fits your budget.</li>
 
-            <li>
-              <b>Comprehensive Coverage:</b> Our insurance policies provide comprehensive coverage for your
-              vehicle, protecting you against a wide range of risks such as accidents, theft, vandalism, and
-              natural disasters.
-            </li>
+<li><b>Comprehensive Coverage:</b> Our insurance policies provide comprehensive coverage for your vehicle, protecting you against a wide range of risks such as accidents, theft, vandalism, and natural disasters.</li>
 
-            <li>
-              <b>24/7 Claims Support:</b> We understand that accidents can happen at any time. That's why we
-              provide 24/7 claims support, allowing you to make new claims online or via phone whenever you
-              need to.
-            </li>
+<li><b>24/7 Claims Support:</b> We understand that accidents can happen at any time. That's why we provide 24/7 claims support, allowing you to make new claims online or via phone whenever you need to.</li>
 
-            <li>
-              <b>Defaqto 5 Star Rated:</b> Our insurance policies have been awarded the Defaqto 5 Star rating,
-              which signifies their high quality and comprehensive coverage. You can have peace of mind
-              knowing that you are getting top-notch protection for your vehicle.
-            </li>
-          </ul>
-        </Text>
-        <Button onClick={handleCloseModal} radius="xs">
-          Close
-        </Button>
-      </Modal>
+<li><b>Defaqto 5 Star Rated:</b> Our insurance policies have been awarded the Defaqto 5 Star rating, which signifies their high quality and comprehensive coverage. You can have peace of mind knowing that you are getting top-notch protection for your vehicle.</li>
+              </ul>
+                  </Text>
+                </Modal>
+              )}
+            </div>
+          </Paper>
+        </Center>
+      </Col>
+    </Grid>
 
-      <FooterLinks />
-    </>
-  );
+    <FooterLinks />
+  </>
+);
 }
+
+
