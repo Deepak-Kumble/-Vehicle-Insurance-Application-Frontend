@@ -44,7 +44,7 @@ export default function Page() {
 
   useEffect(() => {
     form.setValues(
-      GetUserQuoteState(JSON.parse(localStorage.getItem("quote"))?.["user_id"], "quote1") ?? initVals
+      GetUserQuoteState(JSON.parse(localStorage.getItem("quote"))["user_name"], "quote1") ?? initVals
     );
   }, []);
 
@@ -61,8 +61,8 @@ export default function Page() {
               for (const prop in v) {
                 data.append(prop, v[prop]);
               }
-              // data.append("id", JSON.parse(localStorage.getItem("quote"))["user_id"]);
-              lol(JSON.parse(localStorage.getItem("quote"))["user_id"], "quote1", v, 1);
+              // data.append("id", JSON.parse(localStorage.getItem("quote"))["user_name"]);
+              lol(JSON.parse(localStorage.getItem("quote"))["user_name"], "quote1", v, 1);
               fetch(API_URL + "vehicle", {
                 method: "POST",
                 body: data,

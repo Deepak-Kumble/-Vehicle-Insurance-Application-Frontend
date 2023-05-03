@@ -38,10 +38,10 @@ export default function Page() {
         method: "POST",
         body: data,
       })
-      let userid = await req.text();
-      if(userid === "-1") throw new exception("INTERNAL SERVER ERROR, Cant create a new user instance");
+      let username = await req.text();
+      if(username === "-1") throw new exception("INTERNAL SERVER ERROR, Cant create a new user instance");
       localStorage.setItem("quote", JSON.stringify({
-        user_id: parseInt(userid)
+        user_name: parseInt(username)
       }));
       Router.push("/quote1");
     } catch(ex){

@@ -21,7 +21,8 @@ import { API_URL } from "../constants";
 import { NavBar } from "../components/NavBar";
 import { FooterLinks } from "../components/FooterLinks";
 import { QuoteHeader } from "../components/QuoteHeader";
-import { lol } from "../components/data/UserQuoteStateSimulator";
+import { GetUserQuoteState, lol } from "../components/data/UserQuoteStateSimulator";
+import { useEffect } from "react";
 
 export default function Page() {
   let initVals = {
@@ -36,7 +37,7 @@ export default function Page() {
 
   useEffect(() => {
     form.setValues(
-      GetUserQuoteState(JSON.parse(localStorage.getItem("quote"))?.["user_id"], "quote2") ?? initVals
+      GetUserQuoteState(JSON.parse(localStorage.getItem("quote"))["user_name"], "quote2") ?? initVals
     );
   }, []);
 
@@ -53,7 +54,7 @@ export default function Page() {
                 data.append(prop, v[prop]);
               }
 
-              lol(JSON.parse(localStorage.getItem("quote"))["user_id"], "quote2", v, 2);
+              lol(JSON.parse(localStorage.getItem("quote"))["user_name"], "quote2", v, 2);
 
               fetch(API_URL + "ess", {
                 method: "POST",

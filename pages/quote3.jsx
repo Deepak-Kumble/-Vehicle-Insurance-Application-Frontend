@@ -23,7 +23,8 @@ import { FooterLinks } from "../components/FooterLinks";
 import { Banner } from "../components/Banner";
 import { QuoteHeader } from "../components/QuoteHeader";
 import { NavAccount } from "../components/NavAccount";
-import { lol } from "../components/data/UserQuoteStateSimulator";
+import { GetUserQuoteState, lol } from "../components/data/UserQuoteStateSimulator";
+import { useEffect } from "react";
 
 export default function Page() {
   let initVals = {
@@ -36,7 +37,7 @@ export default function Page() {
 
   useEffect(() => {
     form.setValues(
-      GetUserQuoteState(JSON.parse(localStorage.getItem("quote"))?.["user_id"], "quote3") ?? initVals
+      GetUserQuoteState(JSON.parse(localStorage.getItem("quote"))["user_name"], "quote3") ?? initVals
     );
   }, []);
 
@@ -52,7 +53,7 @@ export default function Page() {
                 data.append(prop, v[prop]);
               }
 
-              lol(JSON.parse(localStorage.getItem("quote"))["user_id"], "quote3", v, 3);
+              lol(JSON.parse(localStorage.getItem("quote"))["user_name"], "quote3", v, 3);
 
               fetch(API_URL + "other", {
                 method: "POST",
