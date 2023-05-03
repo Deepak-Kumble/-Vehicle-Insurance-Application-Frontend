@@ -26,24 +26,23 @@ export default function Page() {
 
   return (
     <>
-       <NavAccount />
+      <NavAccount />
 
-       <Center my={"md"}>
+      <Center my={"md"}>
         <Paper w={"60%"} shadow="lg" radius="xs" p="lg">
-        <Stack spacing={"xs"}>
-        <QuoteHeader name="LIST OF POLICIES" step={5} />
-      
-          <br />
-          <Policy1 quote={quote} BtnClick={BtnClick} />
-          <br />
+          <Stack spacing={"xs"}>
+            <QuoteHeader name="LIST OF POLICIES" step={5} />
 
-          <Policy2 quote={quote} BtnClick={BtnClick} />
-          <br />
+            <br />
+            <Policy1 quote={quote} BtnClick={BtnClick} />
+            <br />
 
-          <Policy3 quote={quote} BtnClick={BtnClick} />
+            <Policy2 />
+            {/* <br /> */}
+
+            {/* <Policy3 quote={quote} BtnClick={BtnClick} /> */}
           </Stack>
         </Paper>
-        
       </Center>
 
       <FooterLinks />
